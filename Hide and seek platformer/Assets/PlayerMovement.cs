@@ -10,8 +10,9 @@ public class PlayerMovement : MonoBehaviour
 	private Vector3 m_Velocity = Vector3.zero;
 	private bool m_FacingRight = false;
 	private bool jumping = false;
+	
 
-	[SerializeField] private float m_JumpForce = 400f;
+	[SerializeField] private float m_JumpForce = 500f;
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
 
     // Start is called before the first frame update

@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 	private bool jumping = false;
 	
 
-	[SerializeField] private float m_JumpForce = 500f;
+	[SerializeField] private float m_JumpForce = 7000f;
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
 
     // Start is called before the first frame update
@@ -56,5 +56,11 @@ public class PlayerMovement : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+
+	private void OnTriggerEnter2D(Collider2D other) {
+		if(other.gameObject.CompareTag("Mushroom")) {
+			Destroy(other.gameObject);
+		}
 	}
 }

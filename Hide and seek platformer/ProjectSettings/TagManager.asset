@@ -10,7 +10,7 @@ TagManager:
   - RemovablePlayground
   - DarkBackground
   - DarkForeground
-  - Sign
+  - CheckEyeOpp
   layers:
   - Default
   - TransparentFX

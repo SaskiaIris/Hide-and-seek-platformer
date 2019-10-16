@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EyeManager : MonoBehaviour
 {
-	private bool EyesClosed;
+	private bool eyesClosed;
+    public bool isInCollision;
 	private Renderer darkness;
 	private Renderer darkForeground;
 	private Renderer darkPlayground;
@@ -13,10 +14,18 @@ public class EyeManager : MonoBehaviour
 	private Collider2D collisionOnWhenDark;
 	private Collider2D collisionRemoveWhenDark;
 
+    public static EyeManager instance;
+
     // Start is called before the first frame update
     void Start()
     {
-        EyesClosed = false;
+        if(instance == null)
+        {
+            instance = this;
+        }
+
+        eyesClosed = false;
+        isInCollision = false;
         darkness = GameObject.FindWithTag("Darkness").GetComponent<Renderer>();
 
         darkForeground = GameObject.FindWithTag("DarkForeground").GetComponent<Renderer>();
@@ -32,15 +41,14 @@ public class EyeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    	
-        if(Input.GetButtonDown("Eyes")) {
-        	EyesClosed = !EyesClosed;
-        	print("ogen: " + EyesClosed);
+        if(Input.GetButtonDown("Eyes") && isInCollision) {
+        	eyesClosed = !eyesClosed;
+        	print("ogen: " + eyesClosed);
         }
     }
 
     void FixedUpdate() {
-    	if(EyesClosed) {
+    	if(eyesClosed) {
     		darkness.sortingOrder = 10;
     		darkness.enabled = true;
 

@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 	private bool jumping = false;
 	
 
-	[SerializeField] private float m_JumpForce = 7000f;
+	[SerializeField] private float m_JumpForce = 700f;
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
 
     // Start is called before the first frame update

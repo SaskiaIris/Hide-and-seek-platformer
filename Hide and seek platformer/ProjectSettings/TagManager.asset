@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mushroom
+  - Darkness
+  - DarkPlayground
+  - RemovablePlayground
+  - DarkBackground
+  - DarkForeground
+  - Sign
   layers:
   - Default
   - TransparentFX

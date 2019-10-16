@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EyeManager : MonoBehaviour
 {
+    public Text warningMessage;
+
 	private bool eyesClosed;
     public bool isInCollision;
 	private Renderer darkness;
@@ -15,6 +18,7 @@ public class EyeManager : MonoBehaviour
 	private Collider2D collisionRemoveWhenDark;
 
     public static EyeManager instance;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +45,17 @@ public class EyeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Eyes") && isInCollision) {
-        	eyesClosed = !eyesClosed;
-        	print("ogen: " + eyesClosed);
+        if(Input.GetButtonDown("Eyes")) {
+            if(isInCollision) {
+            	eyesClosed = !eyesClosed;
+            	print("ogen: " + eyesClosed);
+            } else {
+                warningMessage.text = "You can only close/open your eyes in the appropriate \"G\"-marked zones (press o voor okay)";
+            }
+        }
+
+        if(Input.GetButtonDown("Okay")) {
+            warningMessage.text = "";
         }
     }
 

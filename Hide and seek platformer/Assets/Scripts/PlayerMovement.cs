@@ -7,10 +7,10 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerMovement instance;
 
     public Animator playerAnimator;
-	[SerializeField] private float m_JumpForce = 700f;
+	public float m_JumpForce = 15f;
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
 
-    public bool isDark = false;
+    public bool isDark;
 
 	private float movement;
 	private Vector2 targetVelocity;
@@ -43,7 +43,20 @@ public class PlayerMovement : MonoBehaviour
     {
         movement = Input.GetAxis("Horizontal");
         jump = Input.GetButtonDown("Jump");
+
+        if(jump && jumpCounter < 2) {
+            //m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            m_Rigidbody2D.velocity = new Vector2(0f, m_JumpForce);
+            isJumping = true;
+            jumpCounter++;
+        } else {
+            isJumping = false;
+        }
+
         playerAnimator.SetBool("jump", isJumping);
+        playerAnimator.SetFloat("speed", Mathf.Abs(movement));
+        playerAnimator.SetBool("fall", isFalling);
+        playerAnimator.SetBool("dark", isDark);
     }
 
     void FixedUpdate() {
@@ -52,22 +65,6 @@ public class PlayerMovement : MonoBehaviour
 
 		// And then smoothing it out and applying it to the character
 		m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-        //m_Rigidbody2D.AddForce(velocity);
-
-        if (jump && jumpCounter < 2) {
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-			isJumping = true;
-            jumpCounter++;
-		} else {
-			isJumping = false;
-		}
-
-		/*if(m_Rigidbody2D.velocity.y < -0.01) {
-			if(m_PlayerCollider.IsTouching(GameObject.FindWithTag("DarkPlayground").GetComponent<Collider2D>()) == false
-				|| m_PlayerCollider.IsTouching(GameObject.FindWithTag("RemovablePlayground").GetComponent<Collider2D>()) == false) {
-    			isFalling = true;
-    		}
-    	}*/
 
     	if(movement > 0 && m_FacingRight) {
     		Flip();
@@ -75,19 +72,15 @@ public class PlayerMovement : MonoBehaviour
     		Flip();
     	}
 
+
+        ////////////DEBUG///////////
     	//print("valsnelheid: " + m_Rigidbody2D.velocity.y);
     	print("spring: " + isJumping);
-    	print("val: " + isFalling);
-
-    	playerAnimator.SetFloat("speed", Mathf.Abs(movement));
-    	
-        playerAnimator.SetBool("fall", isFalling);
-        playerAnimator.SetBool("dark", isDark);
+        print("val: " + isFalling);    	
         print("is het donker: " + isDark);
     }
 
-    private void Flip()
-	{
+    private void Flip() {
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 
@@ -98,10 +91,6 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		if(other.gameObject.CompareTag("Mushroom")) {
-			//Destroy(other.gameObject);
-		}
-
 		if(other.gameObject.CompareTag("Playground") || other.gameObject.CompareTag("DarkPlayground")) {
         	isFalling = false;
         	isJumping = false;
@@ -112,13 +101,8 @@ public class PlayerMovement : MonoBehaviour
         }
 	}
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Playground") || other.gameObject.CompareTag("DarkPlayground"))
-        {
-            //isFalling = true;
-            //isJumping = true;
-
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Playground") || other.gameObject.CompareTag("DarkPlayground")) {
             if(!isJumping) {
                 isFalling = true;
             }

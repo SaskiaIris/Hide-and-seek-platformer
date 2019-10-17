@@ -1459,7 +1459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 663708209}
-  m_JumpForce: 700
+  m_JumpForce: 15
   m_MovementSmoothing: 0.05
   isDark: 0
 --- !u!50 &663708205
@@ -1559,7 +1559,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5a27554b5d5894a4f844c9ad5d9cba61, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 

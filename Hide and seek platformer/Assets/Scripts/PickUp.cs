@@ -7,9 +7,15 @@ public class PickUp : MonoBehaviour
     // Start is called before the first frame update
     public int value = 1;
 
+    private bool currentlyTriggered = false;
+
     private void OnTriggerEnter2D(Collider2D Other)
     {
-        ScoreManager.instance.ChangeScore(value);
-        Debug.Log("+1");
+	    if(!currentlyTriggered) {
+	    	currentlyTriggered = true;
+	    	Destroy(gameObject);
+	        ScoreManager.instance.ChangeScore(value);
+	        Debug.Log("+1");
+	    }
     }
 }

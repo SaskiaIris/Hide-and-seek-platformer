@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	public Animator playerAnimator;
+    public static PlayerMovement instance;
+
+    public Animator playerAnimator;
 	[SerializeField] private float m_JumpForce = 700f;
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
+
+    public bool isDark = false;
 
 	private float movement;
 	private Vector2 targetVelocity;
@@ -16,12 +20,17 @@ public class PlayerMovement : MonoBehaviour
 	private bool jump;
 	private bool isJumping;
 	private bool isFalling;
+    private int jumpCounter;
 	private Collider2D m_PlayerCollider;
 
     // Start is called before the first frame update
-    void Start()
-    {
-    	m_FacingRight = false;
+    void Start() {
+        if (instance == null) {
+            instance = this;
+        }
+
+        jumpCounter = 0;
+        m_FacingRight = false;
 		jump = false;
 		isJumping = false;
 		isFalling = false;
@@ -34,29 +43,31 @@ public class PlayerMovement : MonoBehaviour
     {
         movement = Input.GetAxis("Horizontal");
         jump = Input.GetButtonDown("Jump");
+        playerAnimator.SetBool("jump", isJumping);
     }
 
-    void FixedUpdate() 
-    {
-    	targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);	
+    void FixedUpdate() {
+        //playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);	
 
 		// And then smoothing it out and applying it to the character
 		m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-    	//m_Rigidbody2D.AddForce(velocity);
+        //m_Rigidbody2D.AddForce(velocity);
 
-		if(jump) {
+        if (jump && jumpCounter < 2) {
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 			isJumping = true;
+            jumpCounter++;
 		} else {
 			isJumping = false;
 		}
 
-		if(m_Rigidbody2D.velocity.y < -0.01) {
+		/*if(m_Rigidbody2D.velocity.y < -0.01) {
 			if(m_PlayerCollider.IsTouching(GameObject.FindWithTag("DarkPlayground").GetComponent<Collider2D>()) == false
 				|| m_PlayerCollider.IsTouching(GameObject.FindWithTag("RemovablePlayground").GetComponent<Collider2D>()) == false) {
     			isFalling = true;
     		}
-    	}
+    	}*/
 
     	if(movement > 0 && m_FacingRight) {
     		Flip();
@@ -64,13 +75,15 @@ public class PlayerMovement : MonoBehaviour
     		Flip();
     	}
 
-    	print("valsnelheid: " + m_Rigidbody2D.velocity.y);
+    	//print("valsnelheid: " + m_Rigidbody2D.velocity.y);
     	print("spring: " + isJumping);
     	print("val: " + isFalling);
 
     	playerAnimator.SetFloat("speed", Mathf.Abs(movement));
-    	playerAnimator.SetBool("jump", isJumping);
-    	//playerAnimator.SetBool("fall", isFalling);
+    	
+        playerAnimator.SetBool("fall", isFalling);
+        playerAnimator.SetBool("dark", isDark);
+        print("is het donker: " + isDark);
     }
 
     private void Flip()
@@ -86,17 +99,31 @@ public class PlayerMovement : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.CompareTag("Mushroom")) {
-			Destroy(other.gameObject);
+			//Destroy(other.gameObject);
 		}
 
-		if(other.gameObject.CompareTag("RemovablePlayground") || other.gameObject.CompareTag("DarkPlayground")) {
-        	//isFalling = false;
-        	//isJumping = false;
+		if(other.gameObject.CompareTag("Playground") || other.gameObject.CompareTag("DarkPlayground")) {
+        	isFalling = false;
+        	isJumping = false;
+
+        	print("Staat op de grond!");
+
+            jumpCounter = 0;
         }
 	}
 
-    private void OnTriggerExit2D(Collider2D Other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        
+        if (other.gameObject.CompareTag("Playground") || other.gameObject.CompareTag("DarkPlayground"))
+        {
+            //isFalling = true;
+            //isJumping = true;
+
+            if(!isJumping) {
+                isFalling = true;
+            }
+
+            print("Staat NIET op de grond!");
+        }
     }
 }

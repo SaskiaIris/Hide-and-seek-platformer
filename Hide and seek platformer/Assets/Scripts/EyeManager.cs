@@ -6,45 +6,45 @@ using UnityEngine.UI;
 public class EyeManager : MonoBehaviour
 {
     public Text warningMessage;
+    public bool isInCollision;
+
 
 	private bool eyesClosed;
-    public bool isInCollision;
+
 	private Renderer darkness;
-	private Renderer darkForeground;
-	private Renderer darkPlayground;
-	private Renderer darkBackground;
-	private Renderer removeObstacleWhenDark;
-	private Collider2D collisionOnWhenDark;
-	private Collider2D collisionRemoveWhenDark;
+
+    private GameObject foreground;
+    private GameObject playground;
+    private GameObject background;
+
+    private GameObject darkForeground;
+    private GameObject darkPlayground;
+    private GameObject darkBackground;
 
     public static EyeManager instance;
-    
 
     // Start is called before the first frame update
-    void Start()
-    {
-        if(instance == null)
-        {
+    void Start() {
+        if(instance == null) {
             instance = this;
         }
 
         eyesClosed = false;
         isInCollision = false;
+        
         darkness = GameObject.FindWithTag("Darkness").GetComponent<Renderer>();
 
-        darkForeground = GameObject.FindWithTag("DarkForeground").GetComponent<Renderer>();
-        darkPlayground = GameObject.FindWithTag("DarkPlayground").GetComponent<Renderer>();
-        darkBackground = GameObject.FindWithTag("DarkBackground").GetComponent<Renderer>();
+        foreground = GameObject.FindWithTag("Foreground");
+        playground = GameObject.FindWithTag("Playground");
+        background = GameObject.FindWithTag("Background");
 
-        collisionOnWhenDark = GameObject.FindWithTag("DarkPlayground").GetComponent<Collider2D>();
-
-        removeObstacleWhenDark = GameObject.FindWithTag("RemovablePlayground").GetComponent<Renderer>();
-        collisionRemoveWhenDark = GameObject.FindWithTag("RemovablePlayground").GetComponent<Collider2D>();
+        darkForeground = GameObject.FindWithTag("DarkForeground");
+        darkPlayground = GameObject.FindWithTag("DarkPlayground");
+        darkBackground = GameObject.FindWithTag("DarkBackground");
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if(Input.GetButtonDown("Eyes")) {
             if(isInCollision) {
             	eyesClosed = !eyesClosed;
@@ -64,26 +64,30 @@ public class EyeManager : MonoBehaviour
     		darkness.sortingOrder = 10;
     		darkness.enabled = true;
 
-    		darkForeground.enabled = true;
-    		darkPlayground.enabled = true;
-    		darkBackground.enabled = true;
+    		darkForeground.GetComponent<Renderer>().enabled = true;
+    		darkPlayground.GetComponent<Renderer>().enabled = true;
+    		darkBackground.GetComponent<Renderer>().enabled = true;
 
-    		collisionOnWhenDark.enabled = true;
+    		darkPlayground.GetComponent<Collider2D>().enabled = true;
 
-    		removeObstacleWhenDark.enabled = false;
-    		collisionRemoveWhenDark.enabled = false;
-    	} else {
+    		playground.GetComponent<Renderer>().enabled = false;
+            playground.GetComponent<Collider2D>().enabled = false;
+
+            PlayerMovement.instance.isDark = true;
+        } else {
     		darkness.sortingOrder = -10;
     		darkness.enabled = false;
 
-    		darkForeground.enabled = false;
-    		darkPlayground.enabled = false;
-    		darkBackground.enabled = false;
+    		darkForeground.GetComponent<Renderer>().enabled = false;
+    		darkPlayground.GetComponent<Renderer>().enabled = false;
+    		darkBackground.GetComponent<Renderer>().enabled = false;
 
-    		collisionOnWhenDark.enabled = false;
+    		darkPlayground.GetComponent<Collider2D>().enabled = false;
 
-    		removeObstacleWhenDark.enabled = true;
-    		collisionRemoveWhenDark.enabled = true;
-    	}
+    		playground.GetComponent<Renderer>().enabled = true;
+    		playground.GetComponent<Collider2D>().enabled = true;
+
+            PlayerMovement.instance.isDark = false;
+        }
     }
 }

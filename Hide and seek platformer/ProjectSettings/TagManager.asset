@@ -7,10 +7,12 @@ TagManager:
   - Mushroom
   - Darkness
   - DarkPlayground
-  - RemovablePlayground
   - DarkBackground
   - DarkForeground
   - CheckEyeOpp
+  - Playground
+  - Background
+  - Foreground
   layers:
   - Default
   - TransparentFX

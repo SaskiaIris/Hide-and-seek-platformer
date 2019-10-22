@@ -13,6 +13,8 @@ TagManager:
   - Playground
   - Background
   - Foreground
+  - Enemy
+  - BackgroundPicture
   layers:
   - Default
   - TransparentFX

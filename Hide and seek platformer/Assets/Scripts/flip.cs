@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class flip : MonoBehaviour
+public class Flip : MonoBehaviour
 {
     public AIPath aiPath;
 

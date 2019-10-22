@@ -11,7 +11,8 @@ public class EyeManager : MonoBehaviour
 
 	private bool eyesClosed;
 
-	private Renderer darkness;
+    //private Renderer darkness;
+    private Camera cam;
 
     private GameObject foreground;
     private GameObject playground;
@@ -21,6 +22,8 @@ public class EyeManager : MonoBehaviour
     private GameObject darkPlayground;
     private GameObject darkBackground;
 
+    private GameObject[] backgroundPictures;
+
     public static EyeManager instance;
 
     // Start is called before the first frame update
@@ -29,10 +32,13 @@ public class EyeManager : MonoBehaviour
             instance = this;
         }
 
+        cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        cam.clearFlags = CameraClearFlags.SolidColor;
+
         eyesClosed = false;
         isInCollision = false;
         
-        darkness = GameObject.FindWithTag("Darkness").GetComponent<Renderer>();
+        //darkness = GameObject.FindWithTag("Darkness").GetComponent<Renderer>();
 
         foreground = GameObject.FindWithTag("Foreground");
         playground = GameObject.FindWithTag("Playground");
@@ -41,6 +47,8 @@ public class EyeManager : MonoBehaviour
         darkForeground = GameObject.FindWithTag("DarkForeground");
         darkPlayground = GameObject.FindWithTag("DarkPlayground");
         darkBackground = GameObject.FindWithTag("DarkBackground");
+
+        backgroundPictures = GameObject.FindGameObjectsWithTag("BackgroundPicture");
     }
 
     // Update is called once per frame
@@ -61,31 +69,49 @@ public class EyeManager : MonoBehaviour
 
     void FixedUpdate() {
     	if(eyesClosed) {
-    		darkness.sortingOrder = 10;
-    		darkness.enabled = true;
+            //darkness.sortingOrder = 10;
+            //darkness.enabled = true;
 
-    		darkForeground.GetComponent<Renderer>().enabled = true;
+            cam.backgroundColor = new Color32(50, 44, 67, 255);
+
+            darkForeground.GetComponent<Renderer>().enabled = true;
     		darkPlayground.GetComponent<Renderer>().enabled = true;
     		darkBackground.GetComponent<Renderer>().enabled = true;
 
     		darkPlayground.GetComponent<Collider2D>().enabled = true;
 
-    		playground.GetComponent<Renderer>().enabled = false;
+            foreground.GetComponent<Renderer>().enabled = false;
+            playground.GetComponent<Renderer>().enabled = false;
+            background.GetComponent<Renderer>().enabled = false;
+
             playground.GetComponent<Collider2D>().enabled = false;
+
+            foreach(GameObject bgPic in backgroundPictures) {
+                bgPic.GetComponent<Renderer>().enabled = false;
+            }
 
             PlayerMovement.instance.isDark = true;
         } else {
-    		darkness.sortingOrder = -10;
-    		darkness.enabled = false;
+            //darkness.sortingOrder = -10;
+            //darkness.enabled = false;
 
-    		darkForeground.GetComponent<Renderer>().enabled = false;
+            cam.backgroundColor = new Color32(152, 220, 255, 255);
+
+            darkForeground.GetComponent<Renderer>().enabled = false;
     		darkPlayground.GetComponent<Renderer>().enabled = false;
     		darkBackground.GetComponent<Renderer>().enabled = false;
 
     		darkPlayground.GetComponent<Collider2D>().enabled = false;
 
-    		playground.GetComponent<Renderer>().enabled = true;
+            foreground.GetComponent<Renderer>().enabled = true;
+            playground.GetComponent<Renderer>().enabled = true;
+            background.GetComponent<Renderer>().enabled = true;
+
     		playground.GetComponent<Collider2D>().enabled = true;
+
+            foreach(GameObject bgPic in backgroundPictures) {
+                bgPic.GetComponent<Renderer>().enabled = true;
+            }
 
             PlayerMovement.instance.isDark = false;
         }

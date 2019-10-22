@@ -20,53 +20,82 @@ public class PlayerMovement : MonoBehaviour
 	private bool jump;
 	private bool isJumping;
 	private bool isFalling;
+    private bool isClimbing;
+    private bool isDucking;
+    private bool isHurt;
     private int jumpCounter;
 	private Collider2D m_PlayerCollider;
 
     // Start is called before the first frame update
     void Start() {
-        if (instance == null) {
+        if(instance == null) {
             instance = this;
         }
 
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        m_PlayerCollider = GetComponent<Collider2D>();
+
         jumpCounter = 0;
+
         m_FacingRight = false;
 		jump = false;
 		isJumping = false;
 		isFalling = false;
-        m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        m_PlayerCollider = GetComponent<Collider2D>();
+        isClimbing = false;
+        isDucking = false;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         movement = Input.GetAxis("Horizontal");
         jump = Input.GetButtonDown("Jump");
 
-        if(jump && jumpCounter < 2) {
+        targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);
+        m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+
+        if (jump && jumpCounter < 2) {
             //m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             m_Rigidbody2D.velocity = new Vector2(0f, m_JumpForce);
             isJumping = true;
+            isFalling = false;
             jumpCounter++;
-        } else {
+        }
+
+        if(jumpCounter > 1 && m_Rigidbody2D.velocity.y < 0) {
+            isFalling = true;
             isJumping = false;
         }
+
+        if(Input.GetAxis("Vertical") > 0f && !isJumping && !isFalling && !isDucking) {
+            isClimbing = true;
+            isDucking = false;
+        } else if(Input.GetAxis("Vertical") < 0f && !isJumping && !isFalling && !isClimbing) {
+            isDucking = true;
+            isClimbing = false;
+        } else {
+            isDucking = false;
+            isClimbing = false;
+        }
+
+        //print("omlaagsnelheid: " + m_Rigidbody2D.velocity.y);
 
         playerAnimator.SetBool("jump", isJumping);
         playerAnimator.SetFloat("speed", Mathf.Abs(movement));
         playerAnimator.SetBool("fall", isFalling);
         playerAnimator.SetBool("dark", isDark);
+        playerAnimator.SetBool("climb", isClimbing);
+        playerAnimator.SetBool("duck", isDucking);
+        playerAnimator.SetBool("hurt", isHurt);
     }
 
     void FixedUpdate() {
         //playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-        targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);	
 
-		// And then smoothing it out and applying it to the character
-		m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+        //targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);
+        // And then smoothing it out and applying it to the character
+        //m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-    	if(movement > 0 && m_FacingRight) {
+        if (movement > 0 && m_FacingRight) {
     		Flip();
     	} else if(movement < 0 && !m_FacingRight) {
     		Flip();
@@ -75,9 +104,9 @@ public class PlayerMovement : MonoBehaviour
 
         ////////////DEBUG///////////
     	//print("valsnelheid: " + m_Rigidbody2D.velocity.y);
-    	print("spring: " + isJumping);
-        print("val: " + isFalling);    	
-        print("is het donker: " + isDark);
+    	//print("spring: " + isJumping);
+        //print("val: " + isFalling);    	
+        //print("is het donker: " + isDark);
     }
 
     private void Flip() {
@@ -99,15 +128,31 @@ public class PlayerMovement : MonoBehaviour
 
             jumpCounter = 0;
         }
+
+        if(other.gameObject.CompareTag("Enemy")) {
+            isHurt = true;
+        }
+
+        if(other.gameObject.CompareTag("CheckEyeOpp")) {
+            EyeManager.instance.isInCollision = true;
+        }
 	}
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Playground") || other.gameObject.CompareTag("DarkPlayground")) {
+        if(other.gameObject.CompareTag("Playground") || other.gameObject.CompareTag("DarkPlayground")) {
             if(!isJumping) {
                 isFalling = true;
             }
 
             print("Staat NIET op de grond!");
+        }
+
+        if(other.gameObject.CompareTag("Enemy")) {
+            isHurt = false;
+        }
+
+        if(other.gameObject.CompareTag("CheckEyeOpp")) {
+            EyeManager.instance.isInCollision = false;
         }
     }
 }

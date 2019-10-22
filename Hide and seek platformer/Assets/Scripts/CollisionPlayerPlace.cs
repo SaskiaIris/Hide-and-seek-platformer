@@ -16,7 +16,7 @@ public class CollisionPlayerPlace : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D Other)
+    /*private void OnTriggerEnter2D(Collider2D Other)
     {
         EyeManager.instance.isInCollision = true;
     }
@@ -24,5 +24,5 @@ public class CollisionPlayerPlace : MonoBehaviour
     private void OnTriggerExit2D(Collider2D Other)
     {
         EyeManager.instance.isInCollision = false;
-    }
+    }*/
 }

@@ -65,16 +65,6 @@ public class PlayerMovement : MonoBehaviour {
         jump = Input.GetButtonDown("Jump");
         crouch = Input.GetButtonDown("Crouch");
 
-        //if(isClimbing) {
-        //m_Rigidbody2D.gravityScale = 0f;
-        //targetVelocity = new Vector2(m_Rigidbody2D.velocity.x, climb * 10f);
-        //m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-        //} else {
-        //m_Rigidbody2D.gravityScale = 3f;
-        targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);
-        m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-        //}
-
         if (jump && jumpCounter < 2) {
             m_Rigidbody2D.velocity = new Vector2(0f, m_JumpForce);
             isJumping = true;
@@ -102,6 +92,16 @@ public class PlayerMovement : MonoBehaviour {
             isDucking = !isDucking;
         }
 
+        //if(isClimbing) {
+            //m_Rigidbody2D.gravityScale = 0f;
+            //targetVelocity = new Vector2(m_Rigidbody2D.velocity.x, climb * 10f);
+            //m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+        //} else {
+            //m_Rigidbody2D.gravityScale = 3f;
+            targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);
+            m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+        //}
+
         print("klimsnelheid: " + m_Rigidbody2D.velocity.y);
 
         playerAnimator.SetBool("jump", isJumping);
@@ -116,6 +116,7 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate() {
         if (movement > 0 && m_FacingRight) {
     		Flip();
+            print("teeestt");
     	} else if(movement < 0 && !m_FacingRight) {
     		Flip();
     	}

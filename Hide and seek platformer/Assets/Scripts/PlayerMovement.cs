@@ -116,7 +116,6 @@ public class PlayerMovement : MonoBehaviour {
     void FixedUpdate() {
         if (movement > 0 && m_FacingRight) {
     		Flip();
-            print("teeestt");
     	} else if(movement < 0 && !m_FacingRight) {
     		Flip();
     	}
@@ -148,10 +147,6 @@ public class PlayerMovement : MonoBehaviour {
 
         if(other.gameObject.CompareTag("CheckEyeOpp")) {
             EyeManager.instance.isInCollision = true;
-        }
-
-        if(other.gameObject.CompareTag("DuckArea")) {
-            isDucking = true;
         }
 
         if(other.gameObject.CompareTag("Stairs")) {

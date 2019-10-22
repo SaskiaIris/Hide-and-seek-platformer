@@ -93,18 +93,28 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if(isClimbing) {
-            m_Rigidbody2D.gravityScale = 0f;
+            //m_Rigidbody2D.gravityScale = 0f;
             targetVelocity = new Vector2(m_Rigidbody2D.velocity.x, climb * 10f);
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-        } else {
-            m_Rigidbody2D.gravityScale = 3f;
+        } /*else {
+            //m_Rigidbody2D.gravityScale = 3f;
             targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+        }*/
+
+        targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);
+        m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+
+        if (isClimbing) {
+            m_Rigidbody2D.gravityScale = 0f;
+        }
+        else {
+            m_Rigidbody2D.gravityScale = 3f;
         }
 
-        //print("klimsnelheid: " + m_Rigidbody2D.velocity.y);
+            //print("klimsnelheid: " + m_Rigidbody2D.velocity.y);
 
-        playerAnimator.SetBool("jump", isJumping);
+            playerAnimator.SetBool("jump", isJumping);
         playerAnimator.SetFloat("speed", Mathf.Abs(movement));
         playerAnimator.SetBool("fall", isFalling);
         playerAnimator.SetBool("dark", isDark);

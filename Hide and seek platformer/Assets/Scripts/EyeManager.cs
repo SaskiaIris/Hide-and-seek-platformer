@@ -8,7 +8,6 @@ public class EyeManager : MonoBehaviour
     public Text warningMessage;
     public bool isInCollision;
 
-
 	private bool eyesClosed;
 
     //private Renderer darkness;

@@ -12,8 +12,7 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        if(instance == null)
-        {
+        if(instance == null) {
             instance = this;
         }
     }

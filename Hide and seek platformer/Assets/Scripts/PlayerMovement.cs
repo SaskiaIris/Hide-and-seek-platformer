@@ -2,28 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
     public static PlayerMovement instance;
 
     public Animator playerAnimator;
-	public float m_JumpForce = 15f;
+	public float m_JumpForce = 14f;
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
 
     public bool isDark;
 
 	private float movement;
+    private float climb;
+
 	private Vector2 targetVelocity;
 	private Rigidbody2D m_Rigidbody2D;
 	private Vector3 m_Velocity = Vector3.zero;
+    private Transform m_Transform;
+
 	private bool m_FacingRight;
 	private bool jump;
+    private bool crouch;
+
 	private bool isJumping;
 	private bool isFalling;
     private bool isClimbing;
+    private bool isOnStairs;
     private bool isDucking;
     private bool isHurt;
+
     private int jumpCounter;
+
 	private Collider2D m_PlayerCollider;
 
     // Start is called before the first frame update
@@ -34,27 +42,40 @@ public class PlayerMovement : MonoBehaviour
 
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         m_PlayerCollider = GetComponent<Collider2D>();
+        m_Transform = GetComponent<Transform>();
 
         jumpCounter = 0;
 
         m_FacingRight = false;
 		jump = false;
+        crouch = false;
+
 		isJumping = false;
 		isFalling = false;
         isClimbing = false;
+        isOnStairs = false;
         isDucking = false;
+        isHurt = false;
     }
 
     // Update is called once per frame
     void Update() {
         movement = Input.GetAxis("Horizontal");
+        climb = Input.GetAxis("Vertical");
         jump = Input.GetButtonDown("Jump");
+        crouch = Input.GetButtonDown("Crouch");
 
+        //if(isClimbing) {
+        //m_Rigidbody2D.gravityScale = 0f;
+        //targetVelocity = new Vector2(m_Rigidbody2D.velocity.x, climb * 10f);
+        //m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+        //} else {
+        //m_Rigidbody2D.gravityScale = 3f;
         targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);
         m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+        //}
 
         if (jump && jumpCounter < 2) {
-            //m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             m_Rigidbody2D.velocity = new Vector2(0f, m_JumpForce);
             isJumping = true;
             isFalling = false;
@@ -66,18 +87,22 @@ public class PlayerMovement : MonoBehaviour
             isJumping = false;
         }
 
-        if(Input.GetAxis("Vertical") > 0f && !isJumping && !isFalling && !isDucking) {
-            isClimbing = true;
-            isDucking = false;
-        } else if(Input.GetAxis("Vertical") < 0f && !isJumping && !isFalling && !isClimbing) {
-            isDucking = true;
-            isClimbing = false;
+        if(climb > 0f && !isJumping && !isFalling && !isDucking) {
+            if(isOnStairs) {
+                isClimbing = true;
+            }
+            //isDucking = false;
         } else {
-            isDucking = false;
             isClimbing = false;
         }
 
-        //print("omlaagsnelheid: " + m_Rigidbody2D.velocity.y);
+        print("klim: " + isClimbing);
+
+        if(crouch && !isJumping && !isFalling && !isClimbing) {
+            isDucking = !isDucking;
+        }
+
+        print("klimsnelheid: " + m_Rigidbody2D.velocity.y);
 
         playerAnimator.SetBool("jump", isJumping);
         playerAnimator.SetFloat("speed", Mathf.Abs(movement));
@@ -89,24 +114,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
-        //playerAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
-
-        //targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);
-        // And then smoothing it out and applying it to the character
-        //m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-
         if (movement > 0 && m_FacingRight) {
     		Flip();
     	} else if(movement < 0 && !m_FacingRight) {
     		Flip();
     	}
-
-
-        ////////////DEBUG///////////
-    	//print("valsnelheid: " + m_Rigidbody2D.velocity.y);
-    	//print("spring: " + isJumping);
-        //print("val: " + isFalling);    	
-        //print("is het donker: " + isDark);
     }
 
     private void Flip() {
@@ -124,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
         	isFalling = false;
         	isJumping = false;
 
-        	print("Staat op de grond!");
+        	//print("Staat op de grond!");
 
             jumpCounter = 0;
         }
@@ -136,6 +148,14 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.CompareTag("CheckEyeOpp")) {
             EyeManager.instance.isInCollision = true;
         }
+
+        if(other.gameObject.CompareTag("DuckArea")) {
+            isDucking = true;
+        }
+
+        if(other.gameObject.CompareTag("Stairs")) {
+            isOnStairs = true;
+        }
 	}
 
     private void OnTriggerExit2D(Collider2D other) {
@@ -144,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
                 isFalling = true;
             }
 
-            print("Staat NIET op de grond!");
+            //print("Staat NIET op de grond!");
         }
 
         if(other.gameObject.CompareTag("Enemy")) {
@@ -153,6 +173,10 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.gameObject.CompareTag("CheckEyeOpp")) {
             EyeManager.instance.isInCollision = false;
+        }
+
+        if (other.gameObject.CompareTag("Stairs")) {
+            isOnStairs = false;
         }
     }
 }

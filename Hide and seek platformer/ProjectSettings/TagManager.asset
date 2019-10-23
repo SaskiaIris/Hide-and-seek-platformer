@@ -17,6 +17,14 @@ TagManager:
   - BackgroundPicture
   - Stairs
   - DuckArea
+  - Key Hint 1
+  - Key Hint 0
+  - Key Hint 2
+  - Key Hint 3
+  - Key Hint 4
+  - Key Hint 5
+  - Key Hint 6
+  - Key Hint 7
   layers:
   - Default
   - TransparentFX

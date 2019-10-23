@@ -25,6 +25,7 @@ TagManager:
   - Key Hint 5
   - Key Hint 6
   - Key Hint 7
+  - Game Over Fall
   layers:
   - Default
   - TransparentFX

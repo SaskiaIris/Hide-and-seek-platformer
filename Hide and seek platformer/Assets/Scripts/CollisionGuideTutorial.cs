@@ -7,14 +7,17 @@ public class CollisionGuideTutorial : MonoBehaviour
 {
     public string textMessage;
     public Text text;
+    public int triggerNumber = 0;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        text.text = textMessage;
+        GameObject.FindWithTag("Key Hint Tutorial " + triggerNumber).GetComponent<Renderer>().enabled = true;
+        //text.text = textMessage;
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        text.text = "";
+        //text.text = "";
+        GameObject.FindWithTag("Key Hint Tutorial " + triggerNumber).GetComponent<Renderer>().enabled = false;
     }
 
 }

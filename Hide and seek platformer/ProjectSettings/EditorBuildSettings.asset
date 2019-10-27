@@ -8,13 +8,58 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/3rd-Party/Aekashics Librarium - Megapack III/Demo/Demo.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Start.unity
-    guid: a8a2b77bee6d6954d83646b25b8e8e36
-  - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: faee38765b809a34592d661548d2323d
+  - enabled: 0
+    path: 
+    guid: 1a3fb0004ea42e4459a0e27295b61816
+  - enabled: 0
+    path: 
+    guid: 1d37d3889d7d7e8448cc43176e5cdb2d
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
     guid: 735649a6c2531f043bdb03caf724aaf5
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/LevelOne.unity
-    guid: 9ba5f0f5b799e774ca12b2e7dad60e40
+    path: Assets/Scenes/1 Main Menu.unity
+    guid: 96ead8b72074109459dd6aa1fbbf60cb
+  - enabled: 1
+    path: Assets/Scenes/2 Pause Menu.unity
+    guid: d6840ebedc64861488212301a4692c3d
+  - enabled: 1
+    path: Assets/Scenes/3 Options Menu.unity
+    guid: 1fea6a8c6abf48249ad964b90f342e36
+  - enabled: 1
+    path: Assets/Scenes/4 Level Select.unity
+    guid: 2254426f383f4be499543bd401d527aa
+  - enabled: 1
+    path: Assets/Scenes/5 Tutorial level.unity
+    guid: 60828463d0ed0514d9053c93d2e94fd1
+  - enabled: 1
+    path: Assets/Scenes/6 Level One.unity
+    guid: 5b40d788e039142419f789336d192804
+  - enabled: 1
+    path: Assets/Scenes/7 Level Two.unity
+    guid: 5a913d304f0280041a78ffa590c4a89f
+  - enabled: 1
+    path: Assets/Scenes/8 Level Three.unity
+    guid: 6f583467cf26e8e4e82f71a3bffd70b8
+  - enabled: 1
+    path: Assets/Scenes/9 Level Four.unity
+    guid: 0ba8aebd3a8eae74a845314814ac579c
+  - enabled: 1
+    path: Assets/Scenes/10 Level Five.unity
+    guid: cb8cb59fa32d2e7469e08fac3c50d507
+  - enabled: 1
+    path: Assets/Scenes/11 Boss Level.unity
+    guid: 2c429f769268eae40ae008cfe12bce87
   m_configObjects: {}

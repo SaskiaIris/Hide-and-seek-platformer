@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMessage: Continue walking..
   text: {fileID: 0}
+  triggerNumber: 2
 --- !u!61 &2767958257705710600
 BoxCollider2D:
   m_ObjectHideFlags: 0

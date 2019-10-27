@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +14,9 @@ public class PickUp : MonoBehaviour
 	    if(!currentlyTriggered) {
 	    	currentlyTriggered = true;
 	    	Destroy(gameObject);
-	        ScoreManager.instance.ChangeScore(value);
-	        Debug.Log("+1");
+			GameValues.Carrots += value;
+	        //ScoreManager.instance.ChangeScore(value);
+	        //Debug.Log("+1");
 	    }
     }
-}
+}*/

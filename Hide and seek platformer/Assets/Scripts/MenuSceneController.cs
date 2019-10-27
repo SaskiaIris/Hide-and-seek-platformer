@@ -4,31 +4,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuSceneController : MonoBehaviour {
-	public int playingScene;
-	int previousMenu;
-	int mainMenu = 0;
-	int pauseMenu = 1;
-	int optionsMenu = 2;
-	int levelSelect = 3;
-
 	public void LoadMainMenu() {
-		SceneManager.LoadScene(mainMenu);
+		SceneManager.LoadScene(GameValues.MainMenu);
 	}
 	public void LoadPauseMenu() {
-		playingScene = SceneManager.GetActiveScene().buildIndex;
-		print("playingscene1 = " + playingScene);
+		GameValues.CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+		//print("playingscene1 = " + playingScene);
 		Camera.main.enabled = false;
 		Time.timeScale = 0;
-		SceneManager.LoadScene(pauseMenu, LoadSceneMode.Additive);
+		SceneManager.LoadScene(GameValues.PauseMenu, LoadSceneMode.Additive);
 	}
 	public void LoadOptionsMenu() {
-		previousMenu = SceneManager.GetActiveScene().buildIndex;
+		GameValues.PreviousMenu = SceneManager.GetActiveScene().buildIndex;
 		Camera.main.enabled = false;
-		SceneManager.LoadScene(optionsMenu, LoadSceneMode.Additive);
+		SceneManager.LoadScene(GameValues.OptionsMenu, LoadSceneMode.Additive);
 	}
 	public void LoadLevelSelect() {
 		Time.timeScale = 1;
-		SceneManager.LoadScene(levelSelect);
+		SceneManager.LoadScene(GameValues.LevelSelect);
     }
 
     /// <summary>
@@ -37,7 +30,7 @@ public class MenuSceneController : MonoBehaviour {
 
 	public void GoBackFromOptions() {
 		Camera.main.enabled = true;
-		SceneManager.UnloadSceneAsync(optionsMenu);
+		SceneManager.UnloadSceneAsync(GameValues.OptionsMenu);
 		//SceneManager.LoadScene(previousMenu);
 	}
 
@@ -50,17 +43,18 @@ public class MenuSceneController : MonoBehaviour {
 	/// </summary>
 
     public void ContinuePlaying() {
-		print("playingscene2 = " + playingScene);
-		Time.timeScale = 1;
+		Time.timeScale = 1.0f;
+		//print("playingscene2 = " + playingScene);
+		
+		SceneManager.UnloadSceneAsync(GameValues.PauseMenu);
 		Camera.main.enabled = true;
-		SceneManager.UnloadSceneAsync(pauseMenu);
-    }
+	}
 
     public void RestartLevel() {
 		Time.timeScale = 1;
 		Camera.main.enabled = true;
-		SceneManager.UnloadSceneAsync(pauseMenu);
-        SceneManager.LoadScene(playingScene);
+		SceneManager.UnloadSceneAsync(GameValues.PauseMenu);
+        SceneManager.LoadScene(GameValues.CurrentLevel);
 	}
 
     /// <summary>

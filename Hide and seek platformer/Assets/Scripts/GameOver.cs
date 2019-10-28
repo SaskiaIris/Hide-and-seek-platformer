@@ -19,8 +19,9 @@ public class GameOver : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+		GameValues.CurrentLevel = SceneManager.GetActiveScene().buildIndex;
         if(other.gameObject.CompareTag("Player")) {
-            SceneManager.LoadScene(1);           
+            SceneManager.LoadScene(GameValues.CurrentLevel);
         }
     }
 }

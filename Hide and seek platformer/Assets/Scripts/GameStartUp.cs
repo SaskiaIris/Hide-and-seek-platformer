@@ -22,6 +22,7 @@ public class GameStartUp : MonoBehaviour
 			GameValues.Level_4 = 8;
 			GameValues.Level_5 = 9;
 			GameValues.BossLevel = 10;
+			GameValues.GameOver = 11;
 			GameValues.IsPaused = false;
 			GameValues.GameStarted = true;
 		}

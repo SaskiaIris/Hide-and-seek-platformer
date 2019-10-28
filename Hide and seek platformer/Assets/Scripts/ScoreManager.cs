@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour {
 	public static ScoreManager instance;
 	public Text text;
-	public int value;
+	private int value;
 	private GameObject playerObject;
 	private GameObject[] carrotObjects;
 	private bool isTriggered;
@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour {
 			}
 		}*/
 
-		for(int c = 0; c < carrotObjects.Length; c++) {
+		/*for(int c = 0; c < carrotObjects.Length; c++) {
 			if(carrotObjects[c] != null) {
 				if(playerObject.GetComponent<Collider2D>().IsTouching(carrotObjects[c].GetComponent<Collider2D>())) {
 					if(!isTriggered) {
@@ -44,9 +44,20 @@ public class ScoreManager : MonoBehaviour {
 					}
 				}
 			}
-		}
+		}*/
 
 		text.text = GameValues.Carrots.ToString();
 		isTriggered = false;
+	}
+
+	private void OnTriggerEnter2D(Collider2D other) {
+		if(other.gameObject.CompareTag("Carrot")) {
+			if(!isTriggered) {
+				isTriggered = true;
+				Destroy(other.gameObject);
+
+				GameValues.Carrots += value;
+			}
+		}
 	}
 }

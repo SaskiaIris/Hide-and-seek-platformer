@@ -7,6 +7,7 @@ public class MenuSceneController : MonoBehaviour {
 	Camera levelCamera;
 
 	public void LoadMainMenu() {
+		GameValues.GameStarted = false;
 		SceneManager.LoadScene(GameValues.MainMenu);
 	}
 	public void LoadPauseMenu() {

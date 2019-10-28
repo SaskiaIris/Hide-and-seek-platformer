@@ -21,7 +21,7 @@ public class EyeManager : MonoBehaviour
     private GameObject darkPlayground;
     private GameObject darkBackground;
 
-    private GameObject[] backgroundPictures;
+    private GameObject backgroundPicture;
 
     public static EyeManager instance;
 
@@ -47,7 +47,7 @@ public class EyeManager : MonoBehaviour
         darkPlayground = GameObject.FindWithTag("DarkPlayground");
         darkBackground = GameObject.FindWithTag("DarkBackground");
 
-        backgroundPictures = GameObject.FindGameObjectsWithTag("BackgroundPicture");
+        backgroundPicture = GameObject.FindGameObjectWithTag("BackgroundPicture");
     }
 
     // Update is called once per frame
@@ -85,9 +85,7 @@ public class EyeManager : MonoBehaviour
 
             playground.GetComponent<Collider2D>().enabled = false;
 
-            foreach(GameObject bgPic in backgroundPictures) {
-                bgPic.GetComponent<Renderer>().enabled = false;
-            }
+            backgroundPicture.GetComponent<Canvas>().enabled = false;
 
             PlayerMovement.instance.isDark = true;
         } else {
@@ -108,11 +106,9 @@ public class EyeManager : MonoBehaviour
 
     		playground.GetComponent<Collider2D>().enabled = true;
 
-            foreach(GameObject bgPic in backgroundPictures) {
-                bgPic.GetComponent<Renderer>().enabled = true;
-            }
+			backgroundPicture.GetComponent<Canvas>().enabled = true;
 
-            PlayerMovement.instance.isDark = false;
+			PlayerMovement.instance.isDark = false;
         }
     }
 }

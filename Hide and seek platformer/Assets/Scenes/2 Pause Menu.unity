@@ -137,6 +137,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1377830005893287711, guid: fed82f7947ceb7e488a92820c2f365a6,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.3529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377830005893287711, guid: fed82f7947ceb7e488a92820c2f365a6,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.34509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377830005893287711, guid: fed82f7947ceb7e488a92820c2f365a6,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.33333334
+      objectReference: {fileID: 0}
     - target: {fileID: 1377830005893287904, guid: fed82f7947ceb7e488a92820c2f365a6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -150,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 1377830005893287904, guid: fed82f7947ceb7e488a92820c2f365a6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8435
+      value: 8480
       objectReference: {fileID: 0}
     - target: {fileID: 1377830005893287904, guid: fed82f7947ceb7e488a92820c2f365a6,
         type: 3}
@@ -196,21 +211,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1377830005893287711, guid: fed82f7947ceb7e488a92820c2f365a6,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.3529412
-      objectReference: {fileID: 0}
-    - target: {fileID: 1377830005893287711, guid: fed82f7947ceb7e488a92820c2f365a6,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.34509805
-      objectReference: {fileID: 0}
-    - target: {fileID: 1377830005893287711, guid: fed82f7947ceb7e488a92820c2f365a6,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.33333334
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fed82f7947ceb7e488a92820c2f365a6, type: 3}
@@ -1183,7 +1183,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 25
   m_TargetDisplay: 0
 --- !u!224 &1987435204
 RectTransform:

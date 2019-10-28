@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour {
 
             //print("klimsnelheid: " + m_Rigidbody2D.velocity.y);
 
-            playerAnimator.SetBool("jump", isJumping);
+        playerAnimator.SetBool("jump", isJumping);
         playerAnimator.SetFloat("speed", Mathf.Abs(movement));
         playerAnimator.SetBool("fall", isFalling);
         playerAnimator.SetBool("dark", isDark);
@@ -166,7 +166,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D other) {
         if(other.gameObject.CompareTag("Playground") || other.gameObject.CompareTag("DarkPlayground")) {
-            if(!isJumping) {
+            if(!isJumping && !isClimbing) {
                 isFalling = true;
             }
             //print("Staat NIET op de grond!");

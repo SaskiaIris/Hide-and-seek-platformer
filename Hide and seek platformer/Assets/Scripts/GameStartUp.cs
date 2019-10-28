@@ -8,7 +8,7 @@ public class GameStartUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		//if(!GameValues.GameStarted) {
+		if(!GameValues.GameStarted) {
 			GameValues.Carrots = 0;
 			GameValues.HealthPoints = 100;
 			GameValues.MainMenu = 0;
@@ -22,8 +22,9 @@ public class GameStartUp : MonoBehaviour
 			GameValues.Level_4 = 8;
 			GameValues.Level_5 = 9;
 			GameValues.BossLevel = 10;
+			GameValues.IsPaused = false;
 			GameValues.GameStarted = true;
-		//}
+		}
 	}
 
     // Update is called once per frame

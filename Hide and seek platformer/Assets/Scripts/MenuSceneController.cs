@@ -4,21 +4,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuSceneController : MonoBehaviour {
+	Camera levelCamera;
+
 	public void LoadMainMenu() {
 		SceneManager.LoadScene(GameValues.MainMenu);
 	}
 	public void LoadPauseMenu() {
+		GameValues.IsPaused = true;
 		GameValues.CurrentLevel = SceneManager.GetActiveScene().buildIndex;
-		//print("playingscene1 = " + playingScene);
-		Camera.main.enabled = false;
+		levelCamera = GameObject.FindGameObjectWithTag("Level Camera").GetComponent<Camera>();
+		levelCamera.enabled = false;
 		Time.timeScale = 0;
 		SceneManager.LoadScene(GameValues.PauseMenu, LoadSceneMode.Additive);
 	}
-	public void LoadOptionsMenu() {
+	/*public void LoadOptionsMenu() {
 		GameValues.PreviousMenu = SceneManager.GetActiveScene().buildIndex;
 		Camera.main.enabled = false;
 		SceneManager.LoadScene(GameValues.OptionsMenu, LoadSceneMode.Additive);
-	}
+	}*/
 	public void LoadLevelSelect() {
 		Time.timeScale = 1;
 		SceneManager.LoadScene(GameValues.LevelSelect);
@@ -28,11 +31,11 @@ public class MenuSceneController : MonoBehaviour {
 	/// 
 	/// </summary>
 
-	public void GoBackFromOptions() {
+	/*public void GoBackFromOptions() {
 		Camera.main.enabled = true;
 		SceneManager.UnloadSceneAsync(GameValues.OptionsMenu);
 		//SceneManager.LoadScene(previousMenu);
-	}
+	}*/
 
     public void QuitGame() {
         Application.Quit();
@@ -43,33 +46,36 @@ public class MenuSceneController : MonoBehaviour {
 	/// </summary>
 
     public void ContinuePlaying() {
+		GameValues.IsPaused = false;
+		levelCamera = GameObject.FindGameObjectWithTag("Level Camera").GetComponent<Camera>();
+		levelCamera.enabled = true;
 		Time.timeScale = 1.0f;
-		//print("playingscene2 = " + playingScene);
-		
 		SceneManager.UnloadSceneAsync(GameValues.PauseMenu);
 		Camera.main.enabled = true;
 	}
 
     public void RestartLevel() {
+		GameValues.IsPaused = false;
 		Time.timeScale = 1;
-		Camera.main.enabled = true;
 		SceneManager.UnloadSceneAsync(GameValues.PauseMenu);
         SceneManager.LoadScene(GameValues.CurrentLevel);
 	}
-
+	
     /// <summary>
 	/// 
 	/// </summary>
 
     private void Update() {
         if(Input.GetButtonDown("Exit")) {
-            if (SceneManager.GetActiveScene().buildIndex > 2) {
-                LoadPauseMenu();
-            } else if(SceneManager.GetActiveScene().buildIndex == 0) {
-                QuitGame();
-            } else if(SceneManager.GetActiveScene().buildIndex == 1) {
-                ContinuePlaying();
-            }
+			if(GameValues.IsPaused) {
+				ContinuePlaying();
+			} else if(SceneManager.GetActiveScene().buildIndex >= GameValues.LevelSelect && !GameValues.IsPaused) {
+				LoadPauseMenu();
+			} else if(SceneManager.GetActiveScene().buildIndex == GameValues.MainMenu) {
+				QuitGame();
+			} /*else if(SceneManager.GetActiveScene().buildIndex == GameValues.OptionsMenu) {
+				GoBackFromOptions();
+			}*/
         }
     }
 }

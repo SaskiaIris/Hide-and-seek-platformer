@@ -32,6 +32,8 @@ TagManager:
   - Key Hint 10
   - Key Hint 11
   - Carrot
+  - Mushroom
+  - Level Camera
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
-	// Start is called before the first frame update
 	public static ScoreManager instance;
 	public Text text;
 	public int value;
@@ -37,11 +36,3 @@ public class ScoreManager : MonoBehaviour {
 		isTriggered = false;
 	}
 }
-
-/*public void ChangeScore(int value) {
-        //Time.timeScale = 0.1f;
-        score = score + value;
-        Debug.Log(score);
-        text.text = *//*"Collected: " +*//* score.ToString() *//*+ "/4"*//*;
-    }
-}*/

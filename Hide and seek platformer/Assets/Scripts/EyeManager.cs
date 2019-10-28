@@ -31,7 +31,7 @@ public class EyeManager : MonoBehaviour
             instance = this;
         }
 
-        cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        cam = GameObject.FindWithTag("Level Camera").GetComponent<Camera>();
         cam.clearFlags = CameraClearFlags.SolidColor;
 
         eyesClosed = false;

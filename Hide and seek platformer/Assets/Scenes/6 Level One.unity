@@ -177,7 +177,6 @@ GameObject:
   - component: {fileID: 400859057}
   - component: {fileID: 400859056}
   - component: {fileID: 400859058}
-  - component: {fileID: 400859059}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Carrot
@@ -264,19 +263,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.07238531}
   serializedVersion: 2
   m_Radius: 0.3651147
---- !u!114 &400859059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400859055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad66cf8b5f8273b40bb6889ae52b553b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 1
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1377830005893287711, guid: fed82f7947ceb7e488a92820c2f365a6,
@@ -639,7 +625,6 @@ GameObject:
   - component: {fileID: 591543872}
   - component: {fileID: 591543874}
   - component: {fileID: 591543873}
-  - component: {fileID: 591543875}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Carrot
@@ -726,19 +711,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &591543875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 591543871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad66cf8b5f8273b40bb6889ae52b553b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 1
 --- !u!4 &663708207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5498955151165222152, guid: bc9fb76e5ab63a040b73be4e892cd8c5,
@@ -1380,7 +1352,6 @@ GameObject:
   - component: {fileID: 1349988202}
   - component: {fileID: 1349988204}
   - component: {fileID: 1349988203}
-  - component: {fileID: 1349988205}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Carrot
@@ -1467,19 +1438,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1349988205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349988201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad66cf8b5f8273b40bb6889ae52b553b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 1
 --- !u!114 &1427997371 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 720117765521050486, guid: dc53af6cf427db7498ad3f41472d9127,
@@ -1569,7 +1527,6 @@ GameObject:
   - component: {fileID: 2144497748}
   - component: {fileID: 2144497750}
   - component: {fileID: 2144497749}
-  - component: {fileID: 2144497751}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Carrot
@@ -1656,19 +1613,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2144497751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2144497747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad66cf8b5f8273b40bb6889ae52b553b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value: 1
 --- !u!1001 &669150714156920281
 PrefabInstance:
   m_ObjectHideFlags: 0

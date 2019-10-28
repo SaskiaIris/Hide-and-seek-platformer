@@ -67,13 +67,13 @@ public class MenuSceneController : MonoBehaviour {
 
     private void Update() {
         if(Input.GetButtonDown("Exit")) {
-			if(GameValues.IsPaused) {
+			/*if(GameValues.IsPaused) {
 				ContinuePlaying();
-			} else if(SceneManager.GetActiveScene().buildIndex >= GameValues.LevelSelect && !GameValues.IsPaused) {
+			} else */if(SceneManager.GetActiveScene().buildIndex >= GameValues.LevelSelect && !GameValues.IsPaused) {
 				LoadPauseMenu();
-			} else if(SceneManager.GetActiveScene().buildIndex == GameValues.MainMenu) {
+			} /*else if(SceneManager.GetActiveScene().buildIndex == GameValues.MainMenu) {
 				QuitGame();
-			} /*else if(SceneManager.GetActiveScene().buildIndex == GameValues.OptionsMenu) {
+			}*/ /*else if(SceneManager.GetActiveScene().buildIndex == GameValues.OptionsMenu) {
 				GoBackFromOptions();
 			}*/
         }

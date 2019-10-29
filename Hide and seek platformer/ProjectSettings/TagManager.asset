@@ -37,6 +37,12 @@ TagManager:
   - Dark Enemy
   - Light Carrot
   - Dark Carrot
+  - Cross 1
+  - Cross 2
+  - Cross 3
+  - Cross 4
+  - Cross 5
+  - Cross 6
   layers:
   - Default
   - TransparentFX

@@ -39,11 +39,19 @@ public class GameController : MonoBehaviour {
 		}
 
 		print("HP:" + GameValues.HealthPoints);
+
 		if(GameValues.Carrots > 4 && GameValues.HealthPoints < 100) {
 			GameValues.Carrots = 0;
 			GameValues.HealthPoints += 20;
 		}
 
+		if(GameValues.CurrentLevel == GameValues.LevelSelect) {
+			for(int check = 1; check < 7; check++) {
+				if((GameValues.ProgressInLevels - 4) >= check) {
+					GameObject.FindWithTag("Cross " + check).GetComponent<Renderer>().enabled = false;
+				}
+			}
+		}
 
 		if(textMessage.text != "") {
 			StartCoroutine(FadeTextToZeroAlpha(4f, textMessage));

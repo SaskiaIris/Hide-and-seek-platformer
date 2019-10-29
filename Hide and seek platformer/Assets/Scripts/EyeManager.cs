@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EyeManager : MonoBehaviour {
     public bool isInCollision;
@@ -36,6 +37,8 @@ public class EyeManager : MonoBehaviour {
             instance = this;
         }
 
+		GameValues.CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+
         cam = GameObject.FindWithTag("Level Camera").GetComponent<Camera>();
         cam.clearFlags = CameraClearFlags.SolidColor;
 
@@ -46,15 +49,17 @@ public class EyeManager : MonoBehaviour {
         playground = GameObject.FindWithTag("Playground");
         background = GameObject.FindWithTag("Background");
 
-        darkForeground = GameObject.FindWithTag("DarkForeground");
-        darkPlayground = GameObject.FindWithTag("DarkPlayground");
-        darkBackground = GameObject.FindWithTag("DarkBackground");
+		if(GameValues.CurrentLevel > 3) {
+			darkForeground = GameObject.FindWithTag("DarkForeground");
+			darkPlayground = GameObject.FindWithTag("DarkPlayground");
+			darkBackground = GameObject.FindWithTag("DarkBackground");
 
-		lightCarrots = GameObject.FindGameObjectsWithTag("Light Carrot");
-		darkCarrots = GameObject.FindGameObjectsWithTag("Dark Carrot");
+			darkCarrots = GameObject.FindGameObjectsWithTag("Dark Carrot");
+			darkEnemies = GameObject.FindGameObjectsWithTag("Dark Enemy");
 
-		lightEnemies = GameObject.FindGameObjectsWithTag("Light Enemy");
-		darkEnemies = GameObject.FindGameObjectsWithTag("Dark Enemy");
+			lightCarrots = GameObject.FindGameObjectsWithTag("Light Carrot");
+			lightEnemies = GameObject.FindGameObjectsWithTag("Light Enemy");
+		}
 
 		backgroundPicture = GameObject.FindGameObjectWithTag("BackgroundPicture");
 
@@ -63,101 +68,103 @@ public class EyeManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if(Input.GetButtonDown("Eyes")) {
+        if(Input.GetButtonDown("Eyes") && GameValues.CurrentLevel > 3) {
             if(isInCollision) {
             	eyesClosed = !eyesClosed;
             	print("ogen: " + eyesClosed);
             } else {
-                warningMessage.text = "You can only close/open your eyes in the appropriate \"G\"-marked zones (press o voor okay)";
+                warningMessage.text = "You can only close/open your eyes in the appropriate \"G\"-marked zones";
             }
         }
 
-        if(Input.GetButtonDown("Okay")) {
+        /*if(Input.GetButtonDown("Okay")) {
             warningMessage.text = "";
-        }
+        }*/
     }
 
     void FixedUpdate() {
-    	if(eyesClosed) {
-            cam.backgroundColor = new Color32(50, 44, 67, 255);
+		if(GameValues.CurrentLevel > 3) {
+    		if(eyesClosed) {
+				cam.backgroundColor = new Color32(50, 44, 67, 255);
 
-            darkForeground.GetComponent<Renderer>().enabled = true;
-    		darkPlayground.GetComponent<Renderer>().enabled = true;
-    		darkBackground.GetComponent<Renderer>().enabled = true;
+				darkForeground.GetComponent<Renderer>().enabled = true;
+    			darkPlayground.GetComponent<Renderer>().enabled = true;
+    			darkBackground.GetComponent<Renderer>().enabled = true;
 
-    		darkPlayground.GetComponent<Collider2D>().enabled = true;
+    			darkPlayground.GetComponent<Collider2D>().enabled = true;
 
-            foreground.GetComponent<Renderer>().enabled = false;
-            playground.GetComponent<Renderer>().enabled = false;
-            background.GetComponent<Renderer>().enabled = false;
+				foreground.GetComponent<Renderer>().enabled = false;
+				playground.GetComponent<Renderer>().enabled = false;
+				background.GetComponent<Renderer>().enabled = false;
 
-            playground.GetComponent<Collider2D>().enabled = false;
+				playground.GetComponent<Collider2D>().enabled = false;
 
-			for(int lC = 0; lC < lightCarrots.Length; lC++) {
-				if(lightCarrots[lC] != null) {
-					lightCarrots[lC].GetComponent<Renderer>().enabled = false;
+				for(int lC = 0; lC < lightCarrots.Length; lC++) {
+					if(lightCarrots[lC] != null) {
+						lightCarrots[lC].GetComponent<Renderer>().enabled = false;
+					}
 				}
-			}
-			for(int dC = 0; dC < darkCarrots.Length; dC++) {
-				if(darkCarrots[dC] != null) {
-					darkCarrots[dC].GetComponent<Renderer>().enabled = true;
+				for(int dC = 0; dC < darkCarrots.Length; dC++) {
+					if(darkCarrots[dC] != null) {
+						darkCarrots[dC].GetComponent<Renderer>().enabled = true;
+					}
 				}
-			}
 
-			for(int lE = 0; lE < lightEnemies.Length; lE++) {
-				if(lightEnemies[lE] != null) {
-					lightEnemies[lE].GetComponent<Renderer>().enabled = false;
+				for(int lE = 0; lE < lightEnemies.Length; lE++) {
+					if(lightEnemies[lE] != null) {
+						lightEnemies[lE].GetComponent<Renderer>().enabled = false;
+					}
 				}
-			}
-			for(int dE = 0; dE < darkEnemies.Length; dE++) {
-				if(darkEnemies[dE] != null) {
-					darkEnemies[dE].GetComponent<Renderer>().enabled = true;
+				for(int dE = 0; dE < darkEnemies.Length; dE++) {
+					if(darkEnemies[dE] != null) {
+						darkEnemies[dE].GetComponent<Renderer>().enabled = true;
+					}
 				}
-			}
 
-			backgroundPicture.GetComponent<Canvas>().enabled = false;
+				backgroundPicture.GetComponent<Canvas>().enabled = false;
 
-            PlayerMovement.instance.isDark = true;
-        } else {
-            cam.backgroundColor = new Color32(152, 220, 255, 255);
+				PlayerMovement.instance.isDark = true;
+			} else {
+				cam.backgroundColor = new Color32(152, 220, 255, 255);
 
-            darkForeground.GetComponent<Renderer>().enabled = false;
-    		darkPlayground.GetComponent<Renderer>().enabled = false;
-    		darkBackground.GetComponent<Renderer>().enabled = false;
+				darkForeground.GetComponent<Renderer>().enabled = false;
+    			darkPlayground.GetComponent<Renderer>().enabled = false;
+    			darkBackground.GetComponent<Renderer>().enabled = false;
 
-    		darkPlayground.GetComponent<Collider2D>().enabled = false;
+    			darkPlayground.GetComponent<Collider2D>().enabled = false;
 
-            foreground.GetComponent<Renderer>().enabled = true;
-            playground.GetComponent<Renderer>().enabled = true;
-            background.GetComponent<Renderer>().enabled = true;
+				foreground.GetComponent<Renderer>().enabled = true;
+				playground.GetComponent<Renderer>().enabled = true;
+				background.GetComponent<Renderer>().enabled = true;
 
-    		playground.GetComponent<Collider2D>().enabled = true;
+    			playground.GetComponent<Collider2D>().enabled = true;
 
-			for(int lC = 0; lC < lightCarrots.Length; lC++) {
-				if(lightCarrots[lC] != null) {
-					lightCarrots[lC].GetComponent<Renderer>().enabled = true;
+				for(int lC = 0; lC < lightCarrots.Length; lC++) {
+					if(lightCarrots[lC] != null) {
+						lightCarrots[lC].GetComponent<Renderer>().enabled = true;
+					}
 				}
-			}
-			for(int dC = 0; dC < darkCarrots.Length; dC++) {
-				if(darkCarrots[dC] != null) {
-					darkCarrots[dC].GetComponent<Renderer>().enabled = false;
+				for(int dC = 0; dC < darkCarrots.Length; dC++) {
+					if(darkCarrots[dC] != null) {
+						darkCarrots[dC].GetComponent<Renderer>().enabled = false;
+					}
 				}
-			}
 
-			for(int lE = 0; lE < lightEnemies.Length; lE++) {
-				if(lightEnemies[lE] != null) {
-					lightEnemies[lE].GetComponent<Renderer>().enabled = true;
+				for(int lE = 0; lE < lightEnemies.Length; lE++) {
+					if(lightEnemies[lE] != null) {
+						lightEnemies[lE].GetComponent<Renderer>().enabled = true;
+					}
 				}
-			}
-			for(int dE = 0; dE < darkEnemies.Length; dE++) {
-				if(darkEnemies[dE] != null) {
-					darkEnemies[dE].GetComponent<Renderer>().enabled = false;
+				for(int dE = 0; dE < darkEnemies.Length; dE++) {
+					if(darkEnemies[dE] != null) {
+						darkEnemies[dE].GetComponent<Renderer>().enabled = false;
+					}
 				}
+
+				backgroundPicture.GetComponent<Canvas>().enabled = true;
+
+				PlayerMovement.instance.isDark = false;
 			}
-
-			backgroundPicture.GetComponent<Canvas>().enabled = true;
-
-			PlayerMovement.instance.isDark = false;
-        }
+		}
     }
 }

@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour {
 	private Vector2 targetVelocity;
 	private Rigidbody2D m_Rigidbody2D;
 	private Vector3 m_Velocity = Vector3.zero;
-    //private Transform m_Transform;
 
 	private bool m_FacingRight;
 	private bool jump;
@@ -33,8 +32,6 @@ public class PlayerMovement : MonoBehaviour {
 
     private int jumpCounter;
 
-	//private Collider2D m_PlayerCollider;
-
     // Start is called before the first frame update
     void Start() {
         if(instance == null) {
@@ -42,8 +39,6 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        //m_PlayerCollider = GetComponent<Collider2D>();
-        //m_Transform = GetComponent<Transform>();
 
         jumpCounter = 0;
 
@@ -126,7 +121,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void GetDamage() {
-		GameValues.HealthPoints -= 10;
+		GameValues.HealthPoints -= 5;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {

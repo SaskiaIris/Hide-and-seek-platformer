@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Darkness
   - DarkPlayground
   - DarkBackground
   - DarkForeground
@@ -12,7 +11,6 @@ TagManager:
   - Playground
   - Background
   - Foreground
-  - Enemy
   - BackgroundPicture
   - Stairs
   - DuckArea
@@ -31,8 +29,6 @@ TagManager:
   - Key Hint 9
   - Key Hint 10
   - Key Hint 11
-  - Carrot
-  - Mushroom
   - Level Camera
   - Health Bar
   - Screen Message

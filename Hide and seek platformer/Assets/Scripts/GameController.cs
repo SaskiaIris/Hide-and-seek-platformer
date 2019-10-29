@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour {
 			GameValues.Level_5 = 9;
 			GameValues.BossLevel = 10;
 			GameValues.GameOver = 11;
+			GameValues.Win = 12;
 			GameValues.ProgressInLevels = 4;
 			GameValues.IsPaused = false;
 			GameValues.GameStarted = true;
@@ -38,14 +39,14 @@ public class GameController : MonoBehaviour {
     void Update() {
 		lastText = textMessage.text;
 
-		if(GameValues.HealthPoints < 5) {
+		if(GameValues.HealthPoints < 10) {
 			SceneManager.LoadScene(GameValues.GameOver);
 		}
 
 		print("HP:" + GameValues.HealthPoints);
 
 		if(GameValues.Carrots > 4 && GameValues.HealthPoints < 100) {
-			GameValues.Carrots = 0;
+			GameValues.Carrots -= 5;
 			GameValues.HealthPoints += 20;
 		}
 
@@ -58,7 +59,7 @@ public class GameController : MonoBehaviour {
 		}
 
 		if(textMessage.text != "" && textMessage.text.Equals(lastText)) {
-			StartCoroutine(FadeTextToZeroAlpha(3.5f, textMessage));
+			StartCoroutine(FadeTextToZeroAlpha(3f, textMessage));
 		}
 
 		backSpacePressed = false;

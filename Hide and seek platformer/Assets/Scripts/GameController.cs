@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour {
     void Start() {
 		if(!GameValues.GameStarted) {
 			GameValues.Carrots = 0;
-			GameValues.HealthPoints = 100;
+			GameValues.HealthPoints = 100f;
 			GameValues.MainMenu = 0;
 			GameValues.PauseMenu = 1;
 			GameValues.OptionsMenu = 2;
@@ -31,5 +31,11 @@ public class GameController : MonoBehaviour {
 		if(GameValues.HealthPoints < 10) {
 			SceneManager.LoadScene(GameValues.GameOver);
 		}
-    }
+
+		print("HP:" + GameValues.HealthPoints);
+		if(GameValues.Carrots > 14 && GameValues.HealthPoints < 100) {
+			GameValues.Carrots = 0;
+			GameValues.HealthPoints += 10;
+		}
+	}
 }

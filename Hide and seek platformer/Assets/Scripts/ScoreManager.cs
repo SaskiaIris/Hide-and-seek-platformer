@@ -5,31 +5,42 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 	public static ScoreManager instance;
-	public Text carrotText;
-	public Text healthPointsText;
+
 	private int value;
-	private GameObject playerObject;
-	private GameObject[] carrotObjects;
 	private bool isTriggered;
+
+	private GameObject carrotCounter;
+	private GameObject healthPoints;
 
 	void Start() {
 		if(instance == null) {
 			instance = this;
 		}
+
 		value = 1;
-		isTriggered = false;
-		playerObject = GameObject.FindWithTag("Player");
-		carrotObjects = GameObject.FindGameObjectsWithTag("Carrot");
+
+		carrotCounter = GameObject.FindWithTag("Carrot Count");
+		healthPoints = GameObject.FindWithTag("Health Bar");
 	}
 
 	void Update() {
-		carrotText.text = GameValues.Carrots.ToString();
-		healthPointsText.text = GameValues.HealthPoints.ToString();
 		isTriggered = false;
+
+		carrotCounter.GetComponent<Text>().text = GameValues.Carrots.ToString();
+		healthPoints.GetComponent<Image>().fillAmount = GameValues.HealthPoints / 100;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		if(other.gameObject.CompareTag("Carrot")) {
+		if(other.gameObject.CompareTag("Light Carrot") && !PlayerMovement.instance.isDark) {
+			if(!isTriggered) {
+				isTriggered = true;
+				Destroy(other.gameObject);
+
+				GameValues.Carrots += value;
+			}
+		}
+
+		if(other.gameObject.CompareTag("Dark Carrot") && PlayerMovement.instance.isDark) {
 			if(!isTriggered) {
 				isTriggered = true;
 				Destroy(other.gameObject);

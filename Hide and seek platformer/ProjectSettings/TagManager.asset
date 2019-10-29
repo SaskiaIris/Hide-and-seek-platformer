@@ -34,6 +34,13 @@ TagManager:
   - Carrot
   - Mushroom
   - Level Camera
+  - Health Bar
+  - Screen Message
+  - Carrot Count
+  - Light Enemy
+  - Dark Enemy
+  - Light Carrot
+  - Dark Carrot
   layers:
   - Default
   - TransparentFX

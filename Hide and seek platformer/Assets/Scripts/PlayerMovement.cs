@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerMovement : MonoBehaviour {
     public static PlayerMovement instance;
-
-    public Animator playerAnimator;
+	public float speed = 8f;
+	public Animator playerAnimator;
 	public float m_JumpForce = 14f;
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
 
@@ -81,28 +82,18 @@ public class PlayerMovement : MonoBehaviour {
             if(isOnStairs) {
                 isClimbing = true;
             }
-            //isDucking = false;
-        } else {
-            //isClimbing = false;
         }
-
-        print("klim: " + isClimbing);
 
         if(crouch && !isJumping && !isFalling && !isClimbing) {
             isDucking = !isDucking;
         }
 
         if(isClimbing) {
-            //m_Rigidbody2D.gravityScale = 0f;
-            targetVelocity = new Vector2(m_Rigidbody2D.velocity.x, climb * 10f);
+            targetVelocity = new Vector2(m_Rigidbody2D.velocity.x, climb * speed);
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-        } /*else {
-            //m_Rigidbody2D.gravityScale = 3f;
-            targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);
-            m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-        }*/
+        }
 
-        targetVelocity = new Vector2(movement * 10f, m_Rigidbody2D.velocity.y);
+        targetVelocity = new Vector2(movement * speed, m_Rigidbody2D.velocity.y);
         m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
         if (isClimbing) {
@@ -111,8 +102,6 @@ public class PlayerMovement : MonoBehaviour {
         else {
             m_Rigidbody2D.gravityScale = 3f;
         }
-
-            //print("klimsnelheid: " + m_Rigidbody2D.velocity.y);
 
         playerAnimator.SetBool("jump", isJumping);
         playerAnimator.SetFloat("speed", Mathf.Abs(movement));
@@ -141,21 +130,28 @@ public class PlayerMovement : MonoBehaviour {
 		transform.localScale = theScale;
 	}
 
+	private void GetDamage() {
+		GameValues.HealthPoints -= 10;
+	}
+
 	private void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.CompareTag("Playground") || other.gameObject.CompareTag("DarkPlayground")) {
         	isFalling = false;
         	isJumping = false;
-
-        	//print("Staat op de grond!");
-
             jumpCounter = 0;
         }
 
-        if(other.gameObject.CompareTag("Enemy")) {
+        if(other.gameObject.CompareTag("Light Enemy") && !isDark) {
             isHurt = true;
+			GetDamage();
         }
 
-        if(other.gameObject.CompareTag("CheckEyeOpp")) {
+		if(other.gameObject.CompareTag("Dark Enemy") && isDark) {
+			isHurt = true;
+			GetDamage();
+		}
+
+		if(other.gameObject.CompareTag("CheckEyeOpp")) {
             EyeManager.instance.isInCollision = true;
         }
 
@@ -169,14 +165,17 @@ public class PlayerMovement : MonoBehaviour {
             if(!isJumping && !isClimbing) {
                 isFalling = true;
             }
-            //print("Staat NIET op de grond!");
         }
 
-        if(other.gameObject.CompareTag("Enemy")) {
-            isHurt = false;
-        }
+		if(other.gameObject.CompareTag("Light Enemy") && !isDark) {
+			isHurt = false;
+		}
 
-        if(other.gameObject.CompareTag("CheckEyeOpp")) {
+		if(other.gameObject.CompareTag("Dark Enemy") && isDark) {
+			isHurt = false;
+		}
+
+		if(other.gameObject.CompareTag("CheckEyeOpp")) {
             EyeManager.instance.isInCollision = false;
         }
 

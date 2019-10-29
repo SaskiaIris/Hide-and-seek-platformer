@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 1377830005893287904, guid: fed82f7947ceb7e488a92820c2f365a6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19490
+      value: 20210
       objectReference: {fileID: 0}
     - target: {fileID: 1377830005893287904, guid: fed82f7947ceb7e488a92820c2f365a6,
         type: 3}
@@ -492,7 +492,7 @@ PrefabInstance:
     - target: {fileID: 5432342540504479664, guid: 9b162dd996f0a904f8fb1f6ee43b5902,
         type: 3}
       propertyPath: m_Text
-      value: You won!!!
+      value: You win!!!
       objectReference: {fileID: 0}
     - target: {fileID: 5432342541542704712, guid: 9b162dd996f0a904f8fb1f6ee43b5902,
         type: 3}

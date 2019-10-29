@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-	Text textMessage;
+	private Text textMessage;
+	private string lastText;
 
     // Start is called before the first frame update
     void Start() {
@@ -34,6 +35,8 @@ public class GameController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+		lastText = textMessage.text;
+
 		if(GameValues.HealthPoints < 5) {
 			SceneManager.LoadScene(GameValues.GameOver);
 		}
@@ -53,7 +56,7 @@ public class GameController : MonoBehaviour {
 			}
 		}
 
-		if(textMessage.text != "") {
+		if(textMessage.text != "" && textMessage.text.Equals(lastText)) {
 			StartCoroutine(FadeTextToZeroAlpha(4f, textMessage));
 		}
 	}

@@ -43,6 +43,17 @@ TagManager:
   - Cross 4
   - Cross 5
   - Cross 6
+  - Ammo
+  - Carrot
+  - Enemy
+  - Key Hint Tutorial 8
+  - Key Hint Tutorial 1
+  - Key Hint Tutorial 4
+  - Key Hint Tutorial 5
+  - Key Hint Tutorial 6
+  - Key Hint Tutorial 7
+  - Key Hint Tutorial 0
+  - Ignore Ammo
   layers:
   - Default
   - TransparentFX

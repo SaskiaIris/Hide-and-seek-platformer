@@ -80,7 +80,6 @@ GameObject:
   - component: {fileID: 9185529468218155306}
   - component: {fileID: 3229377745752024288}
   - component: {fileID: 1385887631544277966}
-  - component: {fileID: 2591549917229060878}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -317,17 +316,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aceb6e77b19a454ca4bf3b949d8e527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2591549917229060878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5498955151165222157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a10ec04da7f321040819f8a8e55a9324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootPoint: {fileID: 214890245822500191}
-  Ammo: {fileID: 5657188099732467457, guid: e47068f66615f2142a7f28f0e73bd170, type: 3}

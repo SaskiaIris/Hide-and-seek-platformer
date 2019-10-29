@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 	private Text textMessage;
 	private string lastText;
+	private bool backSpacePressed;
 
     // Start is called before the first frame update
     void Start() {
@@ -58,6 +59,19 @@ public class GameController : MonoBehaviour {
 
 		if(textMessage.text != "" && textMessage.text.Equals(lastText)) {
 			StartCoroutine(FadeTextToZeroAlpha(4f, textMessage));
+		}
+
+		backSpacePressed = false;
+		if(Input.GetKeyDown(KeyCode.Backspace)) {
+			if(!backSpacePressed) {
+				backSpacePressed = true;
+				GameValues.ProgressInLevels += 1;
+				SceneManager.LoadScene(GameValues.LevelSelect);
+			}
+		}
+
+		if(GameValues.ProgressInLevels == GameValues.Level_4) {
+			GameValues.ProgressInLevels = GameValues.Level_3;
 		}
 	}
 

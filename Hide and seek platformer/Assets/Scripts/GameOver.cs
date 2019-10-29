@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
-{
+public class GameOver : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +16,11 @@ public class GameOver : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-		GameValues.CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+    private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Player")) {
-            SceneManager.LoadScene(GameValues.CurrentLevel);
+			GameValues.CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+			GameValues.HealthPoints = GameValues.HealthPoints / 2;
+			SceneManager.LoadScene(GameValues.CurrentLevel);
         }
     }
 }

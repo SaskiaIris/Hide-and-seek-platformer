@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour {
 	public static ScoreManager instance;
-	public Text text;
+	public Text carrotText;
+	public Text healthPointsText;
 	private int value;
 	private GameObject playerObject;
 	private GameObject[] carrotObjects;
@@ -22,31 +23,8 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	void Update() {
-		/*foreach(GameObject carrotCheck in carrotObjects) {
-			if(playerObject.GetComponent<Collider2D>().IsTouching(carrotCheck.GetComponent<Collider2D>())) {
-				if(!isTriggered) {
-					isTriggered = true;
-					Destroy(carrotCheck);
-					
-					GameValues.Carrots += value;
-				}
-			}
-		}*/
-
-		/*for(int c = 0; c < carrotObjects.Length; c++) {
-			if(carrotObjects[c] != null) {
-				if(playerObject.GetComponent<Collider2D>().IsTouching(carrotObjects[c].GetComponent<Collider2D>())) {
-					if(!isTriggered) {
-						isTriggered = true;
-						Destroy(carrotObjects[c]);
-
-						GameValues.Carrots += value;
-					}
-				}
-			}
-		}*/
-
-		text.text = GameValues.Carrots.ToString();
+		carrotText.text = GameValues.Carrots.ToString();
+		healthPointsText.text = GameValues.HealthPoints.ToString();
 		isTriggered = false;
 	}
 

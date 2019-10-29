@@ -71,8 +71,11 @@ public class GameController : MonoBehaviour {
 		}
 
 		if(GameValues.ProgressInLevels == GameValues.Level_4) {
-			GameValues.ProgressInLevels = GameValues.Level_3;
+			SceneManager.LoadScene(GameValues.Win);
+			//GameValues.ProgressInLevels = GameValues.Level_3;
 		}
+
+
 	}
 
 	public IEnumerator FadeTextToFullAlpha(float t, Text i) {

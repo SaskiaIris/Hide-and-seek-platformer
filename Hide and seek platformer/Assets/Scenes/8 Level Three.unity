@@ -1566,7 +1566,7 @@ PrefabInstance:
     - target: {fileID: 8910225693958305177, guid: f88c107256bb8284db255a25376f9df6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8910225693958305177, guid: f88c107256bb8284db255a25376f9df6,
         type: 3}
@@ -1916,6 +1916,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 7914264055254555009, guid: c3b456d1dcac7344191302070477d37f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ignore Ammo
+      objectReference: {fileID: 0}
     - target: {fileID: 5839159276674448071, guid: c3b456d1dcac7344191302070477d37f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2193,7 +2198,7 @@ PrefabInstance:
     - target: {fileID: 3181825835877050362, guid: dc53af6cf427db7498ad3f41472d9127,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3181825835877050362, guid: dc53af6cf427db7498ad3f41472d9127,
         type: 3}
@@ -2554,7 +2559,7 @@ Transform:
   - {fileID: 1120589418}
   - {fileID: 270667516}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1713094099
 GameObject:
@@ -2589,7 +2594,7 @@ Transform:
   - {fileID: 2129827124}
   - {fileID: 637567891}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1753895321
 PrefabInstance:

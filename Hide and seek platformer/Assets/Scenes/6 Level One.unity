@@ -1443,6 +1443,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 7914264055254555009, guid: c3b456d1dcac7344191302070477d37f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ignore Ammo
+      objectReference: {fileID: 0}
     - target: {fileID: 5839159276674448071, guid: c3b456d1dcac7344191302070477d37f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2138,7 +2143,7 @@ PrefabInstance:
     - target: {fileID: 1377830005893287904, guid: fed82f7947ceb7e488a92820c2f365a6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.28
+      value: -6.15
       objectReference: {fileID: 0}
     - target: {fileID: 1377830005893287904, guid: fed82f7947ceb7e488a92820c2f365a6,
         type: 3}
@@ -2193,7 +2198,7 @@ PrefabInstance:
     - target: {fileID: 1377830005736369933, guid: fed82f7947ceb7e488a92820c2f365a6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.13000011
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1377830005736369933, guid: fed82f7947ceb7e488a92820c2f365a6,
         type: 3}

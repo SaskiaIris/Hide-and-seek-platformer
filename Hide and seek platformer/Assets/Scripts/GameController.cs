@@ -66,8 +66,10 @@ public class GameController : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.Backspace)) {
 			if(!backSpacePressed) {
 				backSpacePressed = true;
-				GameValues.ProgressInLevels += 1;
-				SceneManager.LoadScene(GameValues.LevelSelect);
+				if(GameValues.ProgressInLevels < GameValues.Level_3) {
+					GameValues.ProgressInLevels += 1;
+					SceneManager.LoadScene(GameValues.LevelSelect);
+				}
 			}
 		}
 

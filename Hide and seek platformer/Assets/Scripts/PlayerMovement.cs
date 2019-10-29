@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed = 8f;
 	public Animator playerAnimator;
 	public float m_JumpForce = 14f;
-	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
+	public float m_MovementSmoothing = .05f;
 
     public bool isDark;
 
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour {
 	private Vector2 targetVelocity;
 	private Rigidbody2D m_Rigidbody2D;
 	private Vector3 m_Velocity = Vector3.zero;
-    private Transform m_Transform;
+    //private Transform m_Transform;
 
 	private bool m_FacingRight;
 	private bool jump;
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private int jumpCounter;
 
-	private Collider2D m_PlayerCollider;
+	//private Collider2D m_PlayerCollider;
 
     // Start is called before the first frame update
     void Start() {
@@ -42,12 +42,12 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        m_PlayerCollider = GetComponent<Collider2D>();
-        m_Transform = GetComponent<Transform>();
+        //m_PlayerCollider = GetComponent<Collider2D>();
+        //m_Transform = GetComponent<Transform>();
 
         jumpCounter = 0;
 
-        m_FacingRight = false;
+		m_FacingRight = false;
 		jump = false;
         crouch = false;
 
@@ -121,13 +121,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Flip() {
-		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
-
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		transform.Rotate(0f, 180f, 0f);
 	}
 
 	private void GetDamage() {

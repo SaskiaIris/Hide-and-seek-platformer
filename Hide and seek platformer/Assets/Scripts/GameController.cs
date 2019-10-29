@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour {
 		}
 
 		if(textMessage.text != "" && textMessage.text.Equals(lastText)) {
-			StartCoroutine(FadeTextToZeroAlpha(4f, textMessage));
+			StartCoroutine(FadeTextToZeroAlpha(3.5f, textMessage));
 		}
 
 		backSpacePressed = false;

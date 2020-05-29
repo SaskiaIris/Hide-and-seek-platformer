@@ -9,13 +9,14 @@ public class GameController : MonoBehaviour {
 	private Text textMessage;
 	private string lastText;
 	private bool backSpacePressed;
-	private static float timePlayed = 0.0f; 
 
     // Start is called before the first frame update
     void Start() {
 		if(!GameValues.GameStarted) {
 			GameValues.Carrots = 0;
+			GameValues.TotalCarrots = 0;
 			GameValues.HealthPoints = 100f;
+			GameValues.TimePlayed = 0.0f;
 			GameValues.MainMenu = 0;
 			GameValues.PauseMenu = 1;
 			GameValues.OptionsMenu = 2;
@@ -41,7 +42,7 @@ public class GameController : MonoBehaviour {
     void Update() {
 		lastText = textMessage.text;
 
-		timePlayed += Time.deltaTime;
+		GameValues.TimePlayed += Time.deltaTime;
 
 		if (GameValues.HealthPoints < 10) {
 			SceneManager.LoadScene(GameValues.GameOver);
@@ -79,9 +80,14 @@ public class GameController : MonoBehaviour {
 
 		if(GameValues.ProgressInLevels == GameValues.Level_4) {
 			Analytics.CustomEvent("Timeplayed", new Dictionary<string, object> {
-			{"time played: ", timePlayed }});
+			{"time played: ", GameValues.TimePlayed}});
+
 			Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
 			{"Carrots collected: ", GameValues.TotalCarrots }});
+
+			Analytics.CustomEvent("Eyes Closed", new Dictionary<string, object>{
+			{"Times eyes used: ", GameValues.Eyes_Closed  }});
+
 			SceneManager.LoadScene(GameValues.Win);
 			
 			//GameValues.ProgressInLevels = GameValues.Level_3;

@@ -33,6 +33,14 @@ public class GameController : MonoBehaviour {
 			GameValues.ProgressInLevels = 4;
 			GameValues.IsPaused = false;
 			GameValues.GameStarted = true;
+			GameValues.AddCarrotsLevel(0, 0);
+			GameValues.AddCarrotsLevel(1, 0);
+			GameValues.AddCarrotsLevel(2, 0);
+			GameValues.AddCarrotsLevel(3, 0);
+			GameValues.AddHealthLevel(0, 0.0f);
+			GameValues.AddHealthLevel(1, 0.0f);
+			GameValues.AddHealthLevel(2, 0.0f);
+			GameValues.AddHealthLevel(3, 0.0f);
 		}
 
 		textMessage = GameObject.FindWithTag("Screen Message").GetComponent<Text>();
@@ -81,8 +89,8 @@ public class GameController : MonoBehaviour {
 			Analytics.CustomEvent("Timeplayed", new Dictionary<string, object> {
 			{"time played: ", GameValues.TimePlayed}});
 
-			Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
-			{"Carrots collected: ", GameValues.TotalCarrots }});
+			/*Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
+			{"Carrots collected: ", GameValues.TotalCarrots }});*/
 
 			Analytics.CustomEvent("Eyes Closed", new Dictionary<string, object>{
 			{"Times eyes used: ", GameValues.Eyes_Closed  }});

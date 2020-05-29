@@ -130,6 +130,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void GetDamage() {
 		GameValues.HealthPoints -= 5;
+		GameValues.HealthLostTotal += 5;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {

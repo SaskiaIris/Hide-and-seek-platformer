@@ -6,11 +6,41 @@ using UnityEngine.SceneManagement;
 public static class GameValues {
 	private static bool gv_GameStarted, gv_IsPaused;
 	private static int gv_Carrots, gv_ProgressInLevels, gv_Total_Carrots, gv_Eyes_Closed;
-	private static float gv_HealthPoints, gv_TimePlayed;
+	private static float gv_HealthPoints, gv_TimePlayed, gv_HealthLostTotal;
 	private static int gv_MainMenu, gv_PauseMenu, gv_OptionsMenu, gv_LevelSelect, gv_GameOver, gv_Win;
 	private static int gv_Tutorial, gv_Level_1, gv_Level_2, gv_Level_3, gv_Level_4, gv_Level_5, gv_BossLevel;
 	private static int gv_PreviousMenu, gv_CurrentLevel;
-    private static int gv_Amount_Shots, gv_Amount_DoubleJump;
+	private static int gv_Amount_Shots, gv_Amount_DoubleJump;
+	private static Dictionary<int, int> gv_Carrot_Level = new Dictionary<int, int>();
+	private static Dictionary<int, float> gv_Health_Level = new Dictionary<int, float>();
+
+	public static void AddCarrotsLevel(int level_number, int amount_carrots) {
+		gv_Carrot_Level.Add(level_number, amount_carrots);
+	}
+
+	public static void InsertCarrotsLevel(int level_number, int amount_carrots) {
+		level_number -= 4;
+		gv_Carrot_Level[level_number] = amount_carrots;
+	}
+
+	public static int GetCarrotsLevel(int level_number) {
+		int value = gv_Carrot_Level[level_number];
+		return value;
+	}
+
+	public static void AddHealthLevel(int level_number, float amount_health) {
+		gv_Health_Level.Add(level_number, amount_health);
+	}
+
+	public static void InsertHealthLevel(int level_number, float amount_health) {
+		level_number -= 4;
+		gv_Health_Level[level_number] = amount_health;
+	}
+
+	public static float GetHealthLevel(int level_number) {
+		float value = gv_Health_Level[level_number];
+		return value;
+	}
 
 	public static bool GameStarted {
 		get {
@@ -72,6 +102,15 @@ public static class GameValues {
 		}
 		set {
 			gv_HealthPoints = value;
+		}
+	}
+
+	public static float HealthLostTotal {
+		get {
+			return gv_HealthLostTotal;
+		}
+		set {
+			gv_HealthLostTotal = value;
 		}
 	}
 

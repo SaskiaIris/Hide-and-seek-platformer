@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -40,7 +41,9 @@ public class GameController : MonoBehaviour {
     void Update() {
 		lastText = textMessage.text;
 
-		if(GameValues.HealthPoints < 10) {
+		timePlayed += Time.deltaTime;
+
+		if (GameValues.HealthPoints < 10) {
 			SceneManager.LoadScene(GameValues.GameOver);
 		}
 
@@ -75,11 +78,14 @@ public class GameController : MonoBehaviour {
 		}
 
 		if(GameValues.ProgressInLevels == GameValues.Level_4) {
+			Analytics.CustomEvent("Timeplayed", new Dictionary<string, object> {
+			{"time played: ", timePlayed }});
 			SceneManager.LoadScene(GameValues.Win);
+			
 			//GameValues.ProgressInLevels = GameValues.Level_3;
 		}
 
-		timePlayed += Time.deltaTime;
+		
 
 	}
 

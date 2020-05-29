@@ -48,7 +48,6 @@ public class GameController : MonoBehaviour {
 			SceneManager.LoadScene(GameValues.GameOver);
 		}
 
-		print("HP:" + GameValues.HealthPoints);
 
 		if(GameValues.Carrots > 4 && GameValues.HealthPoints < 100) {
 			GameValues.Carrots -= 5;

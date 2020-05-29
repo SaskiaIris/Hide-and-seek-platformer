@@ -18,6 +18,8 @@ public class Weapon : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && GameValues.CurrentLevel > GameValues.LevelSelect) {
             Shoot();
             Debug.Log("PEW PEW PEW");
+
+            GameValues.AmountShots++;
         }
     }
 

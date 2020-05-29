@@ -65,7 +65,15 @@ public class PlayerMovement : MonoBehaviour {
             m_Rigidbody2D.velocity = new Vector2(0f, m_JumpForce);
             isJumping = true;
             isFalling = false;
+
+            if (jumpCounter == 1)
+            {
+                GameValues.AmountDoubleJump++;
+            }
+
             jumpCounter++;
+
+            
         }
 
         if(jumpCounter > 1 && m_Rigidbody2D.velocity.y < 0) {

@@ -10,6 +10,7 @@ public static class GameValues {
 	private static int gv_MainMenu, gv_PauseMenu, gv_OptionsMenu, gv_LevelSelect, gv_GameOver, gv_Win;
 	private static int gv_Tutorial, gv_Level_1, gv_Level_2, gv_Level_3, gv_Level_4, gv_Level_5, gv_BossLevel;
 	private static int gv_PreviousMenu, gv_CurrentLevel;
+    private static int gv_Amount_Shots, gv_Amount_DoubleJump;
 
 	public static bool GameStarted {
 		get {
@@ -217,4 +218,28 @@ public static class GameValues {
 			gv_CurrentLevel = value;
 		}
 	}
+
+    public static int AmountShots
+    {
+        get
+        {
+            return gv_Amount_Shots;
+        }
+        set
+        {
+            gv_Amount_Shots = value;
+        }
+    }
+
+    public static int AmountDoubleJump
+    {
+        get
+        {
+            return gv_Amount_DoubleJump;
+        }
+        set
+        {
+            gv_Amount_DoubleJump = value;
+        }
+    }
 }

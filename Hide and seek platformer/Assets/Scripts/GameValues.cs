@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class GameValues {
 	private static bool gv_GameStarted, gv_IsPaused;
-	private static int gv_Carrots, gv_ProgressInLevels;
+	private static int gv_Carrots, gv_ProgressInLevels, gv_Total_Carrots;
 	private static float gv_HealthPoints;
 	private static int gv_MainMenu, gv_PauseMenu, gv_OptionsMenu, gv_LevelSelect, gv_GameOver, gv_Win;
 	private static int gv_Tutorial, gv_Level_1, gv_Level_2, gv_Level_3, gv_Level_4, gv_Level_5, gv_BossLevel;
@@ -35,6 +35,15 @@ public static class GameValues {
 		}
 		set {
 			gv_Carrots = value;
+		}
+	}
+
+	public static int TotalCarrots {
+		get {
+			return gv_Total_Carrots;
+		}
+		set {
+			gv_Total_Carrots = value;
 		}
 	}
 

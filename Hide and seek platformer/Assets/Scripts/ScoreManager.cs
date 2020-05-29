@@ -37,6 +37,7 @@ public class ScoreManager : MonoBehaviour {
 				Destroy(other.gameObject);
 
 				GameValues.Carrots += value;
+				GameValues.TotalCarrots += value;
 			}
 		}
 
@@ -46,6 +47,7 @@ public class ScoreManager : MonoBehaviour {
 				Destroy(other.gameObject);
 
 				GameValues.Carrots += value;
+				GameValues.TotalCarrots += value;
 			}
 		}
 	}

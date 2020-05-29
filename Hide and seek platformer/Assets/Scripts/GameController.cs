@@ -80,6 +80,8 @@ public class GameController : MonoBehaviour {
 		if(GameValues.ProgressInLevels == GameValues.Level_4) {
 			Analytics.CustomEvent("Timeplayed", new Dictionary<string, object> {
 			{"time played: ", timePlayed }});
+			Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
+			{"Carrots collected: ", GameValues.TotalCarrots }});
 			SceneManager.LoadScene(GameValues.Win);
 			
 			//GameValues.ProgressInLevels = GameValues.Level_3;

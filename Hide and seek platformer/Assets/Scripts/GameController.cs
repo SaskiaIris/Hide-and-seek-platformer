@@ -89,6 +89,8 @@ public class GameController : MonoBehaviour {
 			Analytics.CustomEvent("Timeplayed", new Dictionary<string, object> {
 			{"time played: ", GameValues.TimePlayed}});
 
+			StartCoroutine(NetworkHandler.SendData("wortels", GameValues.GetCarrotsLevel()));
+
 			/*Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
 			{"Carrots collected: ", GameValues.TotalCarrots }});*/
 

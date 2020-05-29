@@ -23,9 +23,8 @@ public static class GameValues {
 		gv_Carrot_Level[level_number] = amount_carrots;
 	}
 
-	public static int GetCarrotsLevel(int level_number) {
-		int value = gv_Carrot_Level[level_number];
-		return value;
+	public static Dictionary<int, int> GetCarrotsLevel() {
+		return gv_Carrot_Level;
 	}
 
 	public static void AddHealthLevel(int level_number, float amount_health) {

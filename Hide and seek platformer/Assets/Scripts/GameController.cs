@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 	private Text textMessage;
 	private string lastText;
 	private bool backSpacePressed;
+	private static float timePlayed = 0.0f; 
 
     // Start is called before the first frame update
     void Start() {
@@ -78,6 +79,7 @@ public class GameController : MonoBehaviour {
 			//GameValues.ProgressInLevels = GameValues.Level_3;
 		}
 
+		timePlayed += Time.deltaTime;
 
 	}
 

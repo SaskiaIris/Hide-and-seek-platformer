@@ -71,4 +71,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing/TestScene Crouching.unity
     guid: 888d93591f0eb9f44820ad956594abc4
+  - enabled: 1
+    path: Assets/Scenes/TestScene.unity
+    guid: d5e91751310b78c4da029f4cf8a202e2
   m_configObjects: {}

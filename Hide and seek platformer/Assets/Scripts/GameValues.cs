@@ -18,8 +18,20 @@ public static class GameValues {
 	private static Dictionary<int, float> gv_Crouch_level = new Dictionary<int, float>();
 	private static Dictionary<int, float> gv_Time_Level = new Dictionary<int, float>();
 
+	public static void AddTimeLevel(int level_number, float time_played) {
+		gv_Time_Level.Add(level_number, time_played);
+	}
 
-    public static void AddShotsLevel(int level_number, int amount_shots)
+	public static void InsertTimeLevel(int level_number, float time_played) {
+		level_number -= 4;
+		gv_Time_Level[level_number] = time_played;
+	}
+
+	public static Dictionary<int, float> GetTimeLevel() {
+		return gv_Time_Level;
+	}
+
+	public static void AddShotsLevel(int level_number, int amount_shots)
     {
         gv_Shots_Level.Add(level_number, amount_shots);
     }

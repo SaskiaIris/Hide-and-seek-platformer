@@ -52,6 +52,8 @@ public class PlayerMovement : MonoBehaviour {
         isOnStairs = false;
         isDucking = false;
         isHurt = false;
+
+		GameValues.Crouched = 0;
     }
 
     // Update is called once per frame
@@ -92,7 +94,9 @@ public class PlayerMovement : MonoBehaviour {
 
 			if (isDucking)
 			{
-				GameValues.Crouched = +1;
+				GameValues.Crouched++;
+				Debug.Log(GameValues.Crouched);
+
 			}
         }
 

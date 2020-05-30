@@ -10,11 +10,31 @@ public static class GameValues {
 	private static int gv_MainMenu, gv_PauseMenu, gv_OptionsMenu, gv_LevelSelect, gv_GameOver, gv_Win;
 	private static int gv_Tutorial, gv_Level_1, gv_Level_2, gv_Level_3, gv_Level_4, gv_Level_5, gv_BossLevel;
 	private static int gv_PreviousMenu, gv_CurrentLevel;
-	private static int gv_Amount_Shots, gv_Amount_DoubleJump;
 	private static Dictionary<int, float> gv_Carrot_Level = new Dictionary<int, float>();
 	private static Dictionary<int, float> gv_Health_Level = new Dictionary<int, float>();
+    private static Dictionary<int, float> gv_Shots_Level = new Dictionary<int, float>();
+    private static Dictionary<int, float> gv_DoubleJump_Level = new Dictionary<int, float>();
 
-	public static void AddCarrotsLevel(int level_number, int amount_carrots) {
+    public static void AddShotsLevel(int level_number, int amount_shots)
+    {
+        gv_Shots_Level.Add(level_number, amount_shots);
+    }
+
+    public static void AddDoubleJumpLevel(int level_number, int amount_jump)
+    {
+        gv_DoubleJump_Level.Add(level_number, amount_jump);
+    }
+
+    public static Dictionary<int, float> GetShotsLevel()
+    {
+        return gv_Shots_Level;
+    }
+    public static Dictionary<int, float> GetDoubleJumpLevel()
+    {
+        return gv_DoubleJump_Level;
+    }
+
+    public static void AddCarrotsLevel(int level_number, int amount_carrots) {
 		gv_Carrot_Level.Add(level_number, amount_carrots);
 	}
 

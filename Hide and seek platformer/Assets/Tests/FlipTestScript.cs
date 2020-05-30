@@ -8,7 +8,7 @@ using UnityEngine.TestTools;
 public class Testscript
 {
 	[Test]
-	public void TestScriptSimplePasses()
+	public void FlipTestScriptSimplePasses()
 	{
 		GameObject playerObject = new GameObject();
 		playerObject.AddComponent<PlayerMovement>();

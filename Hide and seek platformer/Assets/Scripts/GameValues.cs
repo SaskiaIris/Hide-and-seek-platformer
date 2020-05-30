@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class GameValues {
 	private static bool gv_GameStarted, gv_IsPaused;
-	private static int gv_Carrots, gv_ProgressInLevels, gv_Total_Carrots, gv_Eyes_Closed;
+	private static int gv_Carrots, gv_ProgressInLevels, gv_Total_Carrots, gv_Eyes_Closed, gv_Crouched;
 	private static float gv_HealthPoints, gv_TimePlayed, gv_HealthLostTotal;
 	private static int gv_MainMenu, gv_PauseMenu, gv_OptionsMenu, gv_LevelSelect, gv_GameOver, gv_Win;
 	private static int gv_Tutorial, gv_Level_1, gv_Level_2, gv_Level_3, gv_Level_4, gv_Level_5, gv_BossLevel;
@@ -79,6 +79,23 @@ public static class GameValues {
 		return gv_Eyes_Level;
 	}
 
+	public static void AddCrouchedLevel(int level_number, int Eyes_Closed)
+	{
+		gv_Crouch_level.Add(level_number, Crouched);
+	}
+
+	public static void InsertCrouchedLevel(int level_number, int Eyes_Closed)
+	{
+		level_number -= 4;
+		gv_Crouch_level[level_number] = Crouched;
+	}
+
+	public static Dictionary<int, float> GetCrouchedLevel()
+	{
+		return gv_Crouch_level;
+	}
+
+
 	public static void AddHealthLevel(int level_number, float amount_health) {
 		gv_Health_Level.Add(level_number, amount_health);
 	}
@@ -134,6 +151,15 @@ public static class GameValues {
 		}
 		set {
 			gv_Eyes_Closed = value;
+		}
+	}
+
+	public static int Crouched {
+		get {
+			return gv_Crouched;
+		}
+		set {
+			gv_Crouched = value;
 		}
 	}
 

@@ -89,6 +89,11 @@ public class PlayerMovement : MonoBehaviour {
 
         if(crouch && !isJumping && !isFalling && !isClimbing) {
             isDucking = !isDucking;
+
+			if (isDucking)
+			{
+				GameValues.Crouched = +1;
+			}
         }
 
         if(isClimbing) {

@@ -31,6 +31,7 @@ public class LevelLoader : MonoBehaviour {
 					GameValues.HealthLostTotal = 0;
 					GameValues.Eyes_Closed = 0;
 					GameValues.TotalCarrots = 0;
+					GameValues.Crouched = 0;
 					if(GameValues.CurrentLevel == GameValues.ProgressInLevels) {
 						GameValues.ProgressInLevels++;
 					}

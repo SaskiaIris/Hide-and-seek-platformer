@@ -45,6 +45,10 @@ public class GameController : MonoBehaviour {
 			GameValues.AddEyesLevel(1, 0);
 			GameValues.AddEyesLevel(2, 0);
 			GameValues.AddEyesLevel(3, 0);
+			GameValues.AddCrouchedLevel(0, 0);
+			GameValues.AddCrouchedLevel(1, 0);
+			GameValues.AddCrouchedLevel(2, 0);
+			GameValues.AddCrouchedLevel(3, 0);
 			GameValues.AddShotsLevel(0, 0);
             GameValues.AddShotsLevel(1, 0);
             GameValues.AddShotsLevel(2, 0);
@@ -106,6 +110,7 @@ public class GameController : MonoBehaviour {
 			StartCoroutine(NetworkHandler.SendData("Eyes_Closed", GameValues.GetEyesLevel()));
 			StartCoroutine(NetworkHandler.SendData("shots", GameValues.GetShotsLevel()));
             StartCoroutine(NetworkHandler.SendData("doublejumps", GameValues.GetDoubleJumpLevel()));
+			StartCoroutine(NetworkHandler.SendData("crouches", GameValues.GetCrouchedLevel()));
 
             /*Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
 			{"Carrots collected: ", GameValues.TotalCarrots }});*/

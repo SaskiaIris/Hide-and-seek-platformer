@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour {
 		transform.Rotate(0f, 180f, 0f);
 	}
 
-	private void GetDamage() {
+	public void GetDamage() {
 		GameValues.HealthPoints -= 5;
 		GameValues.HealthLostTotal += 5;
 	}

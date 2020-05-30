@@ -11,7 +11,7 @@ public static class GameValues {
 	private static int gv_Tutorial, gv_Level_1, gv_Level_2, gv_Level_3, gv_Level_4, gv_Level_5, gv_BossLevel;
 	private static int gv_PreviousMenu, gv_CurrentLevel;
 	private static int gv_Amount_Shots, gv_Amount_DoubleJump;
-	private static Dictionary<int, int> gv_Carrot_Level = new Dictionary<int, int>();
+	private static Dictionary<int, float> gv_Carrot_Level = new Dictionary<int, float>();
 	private static Dictionary<int, float> gv_Health_Level = new Dictionary<int, float>();
 
 	public static void AddCarrotsLevel(int level_number, int amount_carrots) {
@@ -23,7 +23,7 @@ public static class GameValues {
 		gv_Carrot_Level[level_number] = amount_carrots;
 	}
 
-	public static Dictionary<int, int> GetCarrotsLevel() {
+	public static Dictionary<int, float> GetCarrotsLevel() {
 		return gv_Carrot_Level;
 	}
 
@@ -36,9 +36,8 @@ public static class GameValues {
 		gv_Health_Level[level_number] = amount_health;
 	}
 
-	public static float GetHealthLevel(int level_number) {
-		float value = gv_Health_Level[level_number];
-		return value;
+	public static Dictionary<int, float> GetHealthLevel() {
+		return gv_Health_Level;
 	}
 
 	public static bool GameStarted {

@@ -90,6 +90,7 @@ public class GameController : MonoBehaviour {
 			{"time played: ", GameValues.TimePlayed}});
 
 			StartCoroutine(NetworkHandler.SendData("wortels", GameValues.GetCarrotsLevel()));
+			StartCoroutine(NetworkHandler.SendData("Levens", GameValues.GetHealthLevel()));
 
 			/*Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
 			{"Carrots collected: ", GameValues.TotalCarrots }});*/

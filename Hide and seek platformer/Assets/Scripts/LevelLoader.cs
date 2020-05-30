@@ -27,6 +27,7 @@ public class LevelLoader : MonoBehaviour {
 				if(GameValues.CurrentLevel > 3) {
 					GameValues.InsertCarrotsLevel(GameValues.CurrentLevel, GameValues.TotalCarrots);
 					GameValues.InsertHealthLevel(GameValues.CurrentLevel, GameValues.HealthLostTotal);
+					
 					GameValues.TotalCarrots = 0;
 					if(GameValues.CurrentLevel == GameValues.ProgressInLevels) {
 						GameValues.ProgressInLevels++;

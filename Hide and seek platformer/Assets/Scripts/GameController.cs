@@ -111,6 +111,7 @@ public class GameController : MonoBehaviour {
 			StartCoroutine(NetworkHandler.SendData("shots", GameValues.GetShotsLevel()));
             StartCoroutine(NetworkHandler.SendData("doublejumps", GameValues.GetDoubleJumpLevel()));
 			StartCoroutine(NetworkHandler.SendData("crouches", GameValues.GetCrouchedLevel()));
+			StartCoroutine(NetworkHandler.SendData("speeltijd", GameValues.GetTimeLevel()));
 
             /*Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
 			{"Carrots collected: ", GameValues.TotalCarrots }});*/

@@ -30,13 +30,17 @@ public class ScoreManager : MonoBehaviour {
 		healthPoints.GetComponent<Image>().fillAmount = GameValues.HealthPoints / 100;
 	}
 
+	public void AddCarrots(int amount) {
+		GameValues.Carrots += amount;
+	}
+
 	private void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.CompareTag("Light Carrot") && !PlayerMovement.instance.isDark) {
 			if(!isTriggered) {
 				isTriggered = true;
 				Destroy(other.gameObject);
 
-				GameValues.Carrots += value;
+				AddCarrots(value);
 				GameValues.TotalCarrots += value;
 			}
 		}
@@ -46,7 +50,7 @@ public class ScoreManager : MonoBehaviour {
 				isTriggered = true;
 				Destroy(other.gameObject);
 
-				GameValues.Carrots += value;
+				AddCarrots(value);
 				GameValues.TotalCarrots += value;
 			}
 		}

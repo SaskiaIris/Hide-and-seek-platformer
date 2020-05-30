@@ -12,11 +12,13 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool isDark;
 
-	private float movement;
+	public float movement;
     private float climb;
 
+    public bool isTesting;
+
 	private Vector2 targetVelocity;
-	private Rigidbody2D m_Rigidbody2D;
+	public Rigidbody2D m_Rigidbody2D;
 	private Vector3 m_Velocity = Vector3.zero;
 
 	public bool m_FacingRight;
@@ -31,6 +33,12 @@ public class PlayerMovement : MonoBehaviour {
     private bool isHurt;
 
     private int jumpCounter;
+
+    public bool IsDucking
+    {
+        get { return isDucking; }
+        set { isDucking = value; }
+    }
 
     // Start is called before the first frame update
     void Start() {
@@ -52,13 +60,15 @@ public class PlayerMovement : MonoBehaviour {
         isOnStairs = false;
         isDucking = false;
         isHurt = false;
+        isTesting = false;
 
 		GameValues.Crouched = 0;
     }
 
     // Update is called once per frame
     void Update() {
-        movement = Input.GetAxis("Horizontal");
+        if (!isTesting)
+            movement = Input.GetAxis("Horizontal");
         climb = Input.GetAxis("Vertical");
         jump = Input.GetButtonDown("Jump");
         crouch = Input.GetButtonDown("Crouch");

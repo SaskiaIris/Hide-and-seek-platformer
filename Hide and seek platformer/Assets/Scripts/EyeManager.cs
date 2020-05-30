@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class EyeManager : MonoBehaviour {
     public bool isInCollision;
 
-	private bool eyesClosed;
+	public bool eyesClosed;
 
     private Camera cam;
 

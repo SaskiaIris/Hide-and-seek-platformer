@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour {
 
             if (jumpCounter == 1)
             {
-                GameValues.AmountDoubleJump++;
+                GameValues.InsertDoubleJumpLevel(GameValues.CurrentLevel, 1);
             }
 
             jumpCounter++;

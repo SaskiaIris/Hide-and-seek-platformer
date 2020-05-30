@@ -45,6 +45,14 @@ public class GameController : MonoBehaviour {
 			GameValues.AddEyesLevel(1, 0);
 			GameValues.AddEyesLevel(2, 0);
 			GameValues.AddEyesLevel(3, 0);
+			GameValues.AddShotsLevel(0, 0);
+            GameValues.AddShotsLevel(1, 0);
+            GameValues.AddShotsLevel(2, 0);
+            GameValues.AddShotsLevel(3, 0);
+            GameValues.AddDoubleJumpLevel(0, 0);
+            GameValues.AddDoubleJumpLevel(1, 0);
+            GameValues.AddDoubleJumpLevel(2, 0);
+            GameValues.AddDoubleJumpLevel(3, 0);
 		}
 
 		textMessage = GameObject.FindWithTag("Screen Message").GetComponent<Text>();
@@ -96,11 +104,13 @@ public class GameController : MonoBehaviour {
 			StartCoroutine(NetworkHandler.SendData("wortels", GameValues.GetCarrotsLevel()));
 			StartCoroutine(NetworkHandler.SendData("Levens", GameValues.GetHealthLevel()));
 			StartCoroutine(NetworkHandler.SendData("Eyes_Closed", GameValues.GetEyesLevel()));
+			StartCoroutine(NetworkHandler.SendData("shots", GameValues.GetShotsLevel()));
+            StartCoroutine(NetworkHandler.SendData("doublejumps", GameValues.GetDoubleJumpLevel()));
 
-			/*Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
+            /*Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
 			{"Carrots collected: ", GameValues.TotalCarrots }});*/
 
-			Analytics.CustomEvent("Eyes Closed", new Dictionary<string, object>{
+            Analytics.CustomEvent("Eyes Closed", new Dictionary<string, object>{
 			{"Times eyes used: ", GameValues.Eyes_Closed  }});
 
 			SceneManager.LoadScene(GameValues.Win);

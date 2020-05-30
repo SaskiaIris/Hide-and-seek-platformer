@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour
             Shoot();
             Debug.Log("PEW PEW PEW");
 
-            GameValues.AmountShots++;
+            GameValues.InsertShotsLevel(GameValues.CurrentLevel, 1);
         }
     }
 

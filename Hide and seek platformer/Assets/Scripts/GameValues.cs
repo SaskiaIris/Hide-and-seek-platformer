@@ -29,6 +29,18 @@ public static class GameValues {
         gv_DoubleJump_Level.Add(level_number, amount_jump);
     }
 
+    public static void InsertShotsLevel(int level_number, int amount_shots)
+    {
+        level_number -= 4;
+        gv_Shots_Level[level_number] += amount_shots;
+    }
+
+    public static void InsertDoubleJumpLevel(int level_number, int amount_jump)
+    {
+        level_number -= 4;
+        gv_DoubleJump_Level[level_number] += amount_jump;
+    }
+
     public static Dictionary<int, float> GetShotsLevel()
     {
         return gv_Shots_Level;
@@ -295,28 +307,4 @@ public static class GameValues {
 			gv_CurrentLevel = value;
 		}
 	}
-
-    public static int AmountShots
-    {
-        get
-        {
-            return gv_Amount_Shots;
-        }
-        set
-        {
-            gv_Amount_Shots = value;
-        }
-    }
-
-    public static int AmountDoubleJump
-    {
-        get
-        {
-            return gv_Amount_DoubleJump;
-        }
-        set
-        {
-            gv_Amount_DoubleJump = value;
-        }
-    }
 }

@@ -70,7 +70,7 @@ public class EyeManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if(Input.GetButtonDown("Eyes") && GameValues.CurrentLevel > 3) {
-			GameValues.Eyes_Closed =+ 1;
+			GameValues.Eyes_Closed += 1;
             if(isInCollision) {
             	eyesClosed = !eyesClosed;
             	print("ogen: " + eyesClosed);

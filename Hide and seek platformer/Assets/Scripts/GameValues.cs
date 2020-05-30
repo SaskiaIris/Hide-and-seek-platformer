@@ -14,6 +14,10 @@ public static class GameValues {
 	private static Dictionary<int, float> gv_Health_Level = new Dictionary<int, float>();
     private static Dictionary<int, float> gv_Shots_Level = new Dictionary<int, float>();
     private static Dictionary<int, float> gv_DoubleJump_Level = new Dictionary<int, float>();
+	private static Dictionary<int, float> gv_Eyes_Level = new Dictionary<int, float>();
+	private static Dictionary<int, float> gv_Crouch_level = new Dictionary<int, float>();
+	private static Dictionary<int, float> gv_Time_Level = new Dictionary<int, float>();
+
 
     public static void AddShotsLevel(int level_number, int amount_shots)
     {
@@ -45,6 +49,22 @@ public static class GameValues {
 
 	public static Dictionary<int, float> GetCarrotsLevel() {
 		return gv_Carrot_Level;
+	}
+
+	public static void AddEyesLevel(int level_number, int Eyes_Closed)
+	{
+		gv_Eyes_Level.Add(level_number, Eyes_Closed);
+	}
+
+	public static void InsertEyesLevel(int level_number, int Eyes_Closed)
+	{
+		level_number -= 4;
+		gv_Eyes_Level[level_number] = Eyes_Closed;
+	}
+
+	public static Dictionary<int, float> GetEyesLevel()
+	{
+		return gv_Eyes_Level;
 	}
 
 	public static void AddHealthLevel(int level_number, float amount_health) {

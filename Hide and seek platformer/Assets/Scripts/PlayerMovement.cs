@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour {
 	private Rigidbody2D m_Rigidbody2D;
 	private Vector3 m_Velocity = Vector3.zero;
 
-	private bool m_FacingRight;
+	public bool m_FacingRight;
 	private bool jump;
     private bool crouch;
 
@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour {
     	}
     }
 
-    private void Flip() {
+    public void Flip() {
 		m_FacingRight = !m_FacingRight;
 		transform.Rotate(0f, 180f, 0f);
 	}

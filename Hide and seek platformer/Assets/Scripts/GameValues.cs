@@ -307,28 +307,4 @@ public static class GameValues {
 			gv_CurrentLevel = value;
 		}
 	}
-
-    public static int AmountShots
-    {
-        get
-        {
-            return gv_Amount_Shots;
-        }
-        set
-        {
-            gv_Amount_Shots = value;
-        }
-    }
-
-    public static int AmountDoubleJump
-    {
-        get
-        {
-            return gv_Amount_DoubleJump;
-        }
-        set
-        {
-            gv_Amount_DoubleJump = value;
-        }
-    }
 }

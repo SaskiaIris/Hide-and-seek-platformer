@@ -41,6 +41,10 @@ public class GameController : MonoBehaviour {
 			GameValues.AddHealthLevel(1, 0.0f);
 			GameValues.AddHealthLevel(2, 0.0f);
 			GameValues.AddHealthLevel(3, 0.0f);
+			GameValues.AddEyesLevel(0, 0);
+			GameValues.AddEyesLevel(1, 0);
+			GameValues.AddEyesLevel(2, 0);
+			GameValues.AddEyesLevel(3, 0);
 		}
 
 		textMessage = GameObject.FindWithTag("Screen Message").GetComponent<Text>();
@@ -91,6 +95,7 @@ public class GameController : MonoBehaviour {
 
 			StartCoroutine(NetworkHandler.SendData("wortels", GameValues.GetCarrotsLevel()));
 			StartCoroutine(NetworkHandler.SendData("Levens", GameValues.GetHealthLevel()));
+			StartCoroutine(NetworkHandler.SendData("Eyes_Closed", GameValues.GetEyesLevel()));
 
 			/*Analytics.CustomEvent("CarrotsCollected", new Dictionary<string, object> {
 			{"Carrots collected: ", GameValues.TotalCarrots }});*/
